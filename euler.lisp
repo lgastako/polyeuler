@@ -52,10 +52,10 @@
 
 
 (defun euler2 ()
-  (euler2-iter 1 1 0))
+    (euler2-iter 1 1 0))
 
 
-(defconstant *eulers* 
+(defconstant *eulers*
     '(#'euler1 
       #'euler2))
 
