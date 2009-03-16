@@ -1,0 +1,11 @@
+This is my attempt to solve all of the problems from Project Euler in as
+many languages as possible.  My goal is to, wherever possible, create a single
+source file which produces a single interpreted script or compiled executable
+which when invoked from the command line with no arguments will print the
+answers to each of the euler problems in order, or, if invoked with arguments
+treats the arguments as problem numbers and prints the answer to the
+appropriate problems.
+
+-
+John Evans
+john@jpevans.com
