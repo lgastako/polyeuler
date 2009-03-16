@@ -1,0 +1,4 @@
+program euler;
+
+begin
+end.
