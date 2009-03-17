@@ -43,6 +43,7 @@ def euler2
     n
 end
 
+
 EULERS = [
     euler1,
     euler2
