@@ -2,6 +2,9 @@
 
 ; Utility functions used in multiple solutions
 
+(ns euler
+    (:use clojure.contrib.command-line))
+
 (defn sqrt [n] (. Math sqrt n))
 
 (defn factor? [n f]
@@ -105,244 +108,245 @@
 
 (assert (= 6857 (euler3)))
 
-
-; Problem 4
-; A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.
-; Find the largest palindrome made from the product of two 3-digit numbers.
-
-(defn palindrome? [s]
-    (let [len (count s)]
-        (and
-            (= (first s) (last s))
-            (or (>= 1 len)
-                (recur (. s (substring 1 (dec len))))))))
-
-(defn palindrome-start-digit 
-    ([n] (palindrome-start-digit n ""))
-    ([n s]
-        (if (<= n 0)
-            (str-to-int s)
-            (recur (- n 1) (str s "9")))))
-
-(defn largest-palindromic-number
-    ([num-digits] 
-        (let [start (palindrome-start-digit num-digits)]
-            (largest-palindromic-number num-digits start start start 0)))
-    ([num-digits x y start acc]
-        (if (< (count (str x)) num-digits)
-            acc
-            (if (< (count (str y)) num-digits)
-                (recur num-digits (- x 1) start start acc)
-                (let [n (* x y)]
-                    (recur num-digits x (- y 1) start (if (and (> n acc ) (palindrome? (str n))) n acc)))))))
-
-(assert (= (largest-palindromic-number 2)))
-
-(defn euler4 []
-    (largest-palindromic-number 3))
-
-(assert (= 906609 (euler4)))
-
-
-; Problem 5
-; 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-; What is the smallest number that is evenly divisible by all of the numbers from 1 to 20?
-
-(defn divisible-by-all? [n fs]
-    (every? #(factor? n %) fs))
-
-(defn find-divisible-by-all 
-    ([min max] (find-divisible-by-all min max max))
-    ([min max n]
-        (if (divisible-by-all? n (range min max))
-            n
-            (recur min max (+ n 1)))))
-
-(assert (= (find-divisible-by-all 1 10) 2520))
-
-(defn euler5 []
-    (find-divisible-by-all 1 20))
-
-(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
-
-
-; Problem 6
-; The sum of the squares of the first ten natural numbers is,
-; 12 + 22 + ... + 102 = 385
-; The square of the sum of the first ten natural numbers is,
-; (1 + 2 + ... + 10)2 = 552 = 3025
-; Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025  385 = 2640.
-; 
-; Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
-
-(defn sum-of-squares [ns]
-    (apply + (map square ns)))
-
-(defn square-of-sum [ns]
-    (square (apply + ns)))
-
-(defn euler6 []
-    (let [r (range 1 101)]
-        (- (square-of-sum r) (sum-of-squares r))))
-
-(assert (= 25164150 (euler6)))
-
-
-; Problem 7
-; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
-; What is the 10001st prime number?
-
-(defn find-nth-prime 
-    ([nth] (find-nth-prime nth 2 0))
-    ([nth n count]
-        (if (prime? n)
-            (let [current (+ count 1)]
-                (if (= nth current)
-                    n
-                    (recur nth (+ n 1) current)))
-            (recur nth (+ n 1) count))))
-
-(assert (= (find-nth-prime 6) 13))
-
-(defn euler7 []
-    (find-nth-prime 10001))
-
-(assert (= 104743 (euler7)))
-
-; Problem 8
-; Find the greatest product of five consecutive digits in the 1000-digit number.
-(def prob8-data (str "73167176531330624919225119674426574742355349194934"
-                     "96983520312774506326239578318016984801869478851843"
-                     "85861560789112949495459501737958331952853208805511"
-                     "12540698747158523863050715693290963295227443043557"
-                     "66896648950445244523161731856403098711121722383113"
-                     "62229893423380308135336276614282806444486645238749"
-                     "30358907296290491560440772390713810515859307960866"
-                     "70172427121883998797908792274921901699720888093776"
-                     "65727333001053367881220235421809751254540594752243"
-                     "52584907711670556013604839586446706324415722155397"
-                     "53697817977846174064955149290862569321978468622482"
-                     "83972241375657056057490261407972968652414535100474"
-                     "82166370484403199890008895243450658541227588666881"
-                     "16427171479924442928230863465674813919123162824586"
-                     "17866458359124566529476545682848912883142607690042"
-                     "24219022671055626321111109370544217506941658960408"
-                     "07198403850962455444362981230987879927244284909188"
-                     "84580156166097919133875499200524063689912560717606"
-                     "05886116467109405077541002256983155200055935729725"
-                     "71636269561882670428252483600823257530420752963450"))
- 
-(defn product-of-n-consecutive-digits-at [n at s]
-    (apply * (map char-to-int (. s substring at (+ at 5)))))
-
-(product-of-n-consecutive-digits-at 5 0 prob8-data)
-
-(defn euler8 [] 
-    (apply max (map #(product-of-n-consecutive-digits-at 5 % prob8-data) (range 0 (- (count prob8-data) 5)))))
-
-(assert (= 40824 (euler8)))
-
-
-; Problem 9
-;A Pythagorean triplet is a set of three natural numbers, a  b  c, for which,
-; a^2 + b^2 = c^2
-; For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+;; Problem 4
+;; A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.
+;; Find the largest palindrome made from the product of two 3-digit numbers.
 ;
-; There exists exactly one Pythagorean triplet for which a + b + c = 1000.
-; Find the product abc.
-
-(defn find-a-pythagorean-triplet-with-sum 
-    ([sum] (find-a-pythagorean-triplet-with-sum sum 0 0 0))
-    ([sum a b c]
-        (if (and (= (+ (square a) (square b)) (square c)) (= (+ a b c) sum))
-            (list a b c)
-            (if (>= c sum)
-                (if (>= b sum)
-                    (if (>= a sum)
-                        (throw "should not get here")
-                        (recur sum (+ a 1) (+ a 2) (+ a 3)))
-                    (recur sum a (+ b 1) (+ b 2)))
-                (recur sum a b (+ c 1))))))
-
-(defn pythagorean-product [sum]
-    (apply * (find-a-pythagorean-triplet-with-sum sum)))
-
-(assert (= 60 (pythagorean-product 12)))
-
-(defn euler9 []
-    (pythagorean-product 1000))
-
-(assert (= 31875000 (euler9))) ; Slow
-
-
-; Problem 10
-; The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
-; Find the sum of all the primes below two million.
-
-(defn sum-of-primes-below
-    ([max] (sum-of-primes-below max 2 0))
-    ([max n acc]
-        (if (>= n max)
-            acc
-            (recur max (+ n 1) (+ (if (prime? n) n 0) acc)))))
-
-(def sum-of-primes-below (memoize sum-of-primes-below))
-
-(assert (= 17 (sum-of-primes-below 10)))
-
-(defn euler10 []
-    (sum-of-primes-below 2000000))
-
-(assert (= 142913828922 (euler10)))
-
-
-;;; Problem 11
-;; The sequence of triangle numbers is generated by adding the natural numbers. So the 7^(th) triangle number would be 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28. The first ten terms would be:
-;;
-;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
-;;
-;; Let us list the factors of the first seven triangle numbers:
+;(defn palindrome? [s]
+;    (let [len (count s)]
+;        (and
+;            (= (first s) (last s))
+;            (or (>= 1 len)
+;                (recur (. s (substring 1 (dec len))))))))
+;
+;(defn palindrome-start-digit 
+;    ([n] (palindrome-start-digit n ""))
+;    ([n s]
+;        (if (<= n 0)
+;            (str-to-int s)
+;            (recur (- n 1) (str s "9")))))
+;
+;(defn largest-palindromic-number
+;    ([num-digits] 
+;        (let [start (palindrome-start-digit num-digits)]
+;            (largest-palindromic-number num-digits start start start 0)))
+;    ([num-digits x y start acc]
+;        (if (< (count (str x)) num-digits)
+;            acc
+;            (if (< (count (str y)) num-digits)
+;                (recur num-digits (- x 1) start start acc)
+;                (let [n (* x y)]
+;                    (recur num-digits x (- y 1) start (if (and (> n acc ) (palindrome? (str n))) n acc)))))))
+;
+;(assert (= (largest-palindromic-number 2)))
+;
+;(defn euler4 []
+;    (largest-palindromic-number 3))
+;
+;(assert (= 906609 (euler4)))
+;
+;
+;; Problem 5
+;; 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+;; What is the smallest number that is evenly divisible by all of the numbers from 1 to 20?
+;
+;(defn divisible-by-all? [n fs]
+;    (every? #(factor? n %) fs))
+;
+;(defn find-divisible-by-all 
+;    ([min max] (find-divisible-by-all min max max))
+;    ([min max n]
+;        (if (divisible-by-all? n (range min max))
+;            n
+;            (recur min max (+ n 1)))))
+;
+;(assert (= (find-divisible-by-all 1 10) 2520))
+;
+;(defn euler5 []
+;    (find-divisible-by-all 1 20))
+;
+;(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
+;
+;
+;; Problem 6
+;; The sum of the squares of the first ten natural numbers is,
+;; 12 + 22 + ... + 102 = 385
+;; The square of the sum of the first ten natural numbers is,
+;; (1 + 2 + ... + 10)2 = 552 = 3025
+;; Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025  385 = 2640.
 ;; 
-;;     1: 1
-;;     3: 1,3
-;;     6: 1,2,3,6
-;;    10: 1,2,5,10
-;;    15: 1,3,5,15
-;;    21: 1,3,7,21
-;;    28: 1,2,4,7,14,28
+;; Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+;
+;(defn sum-of-squares [ns]
+;    (apply + (map square ns)))
+;
+;(defn square-of-sum [ns]
+;    (square (apply + ns)))
+;
+;(defn euler6 []
+;    (let [r (range 1 101)]
+;        (- (square-of-sum r) (sum-of-squares r))))
+;
+;(assert (= 25164150 (euler6)))
+;
+;
+;; Problem 7
+;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+;; What is the 10001st prime number?
+;
+;(defn find-nth-prime 
+;    ([nth] (find-nth-prime nth 2 0))
+;    ([nth n count]
+;        (if (prime? n)
+;            (let [current (+ count 1)]
+;                (if (= nth current)
+;                    n
+;                    (recur nth (+ n 1) current)))
+;            (recur nth (+ n 1) count))))
+;
+;(assert (= (find-nth-prime 6) 13))
+;
+;(defn euler7 []
+;    (find-nth-prime 10001))
+;
+;(assert (= 104743 (euler7)))
+;
+;; Problem 8
+;; Find the greatest product of five consecutive digits in the 1000-digit number.
+;(def prob8-data (str "73167176531330624919225119674426574742355349194934"
+;                     "96983520312774506326239578318016984801869478851843"
+;                     "85861560789112949495459501737958331952853208805511"
+;                     "12540698747158523863050715693290963295227443043557"
+;                     "66896648950445244523161731856403098711121722383113"
+;                     "62229893423380308135336276614282806444486645238749"
+;                     "30358907296290491560440772390713810515859307960866"
+;                     "70172427121883998797908792274921901699720888093776"
+;                     "65727333001053367881220235421809751254540594752243"
+;                     "52584907711670556013604839586446706324415722155397"
+;                     "53697817977846174064955149290862569321978468622482"
+;                     "83972241375657056057490261407972968652414535100474"
+;                     "82166370484403199890008895243450658541227588666881"
+;                     "16427171479924442928230863465674813919123162824586"
+;                     "17866458359124566529476545682848912883142607690042"
+;                     "24219022671055626321111109370544217506941658960408"
+;                     "07198403850962455444362981230987879927244284909188"
+;                     "84580156166097919133875499200524063689912560717606"
+;                     "05886116467109405077541002256983155200055935729725"
+;                     "71636269561882670428252483600823257530420752963450"))
+; 
+;(defn product-of-n-consecutive-digits-at [n at s]
+;    (apply * (map char-to-int (. s substring at (+ at 5)))))
+;
+;(product-of-n-consecutive-digits-at 5 0 prob8-data)
+;
+;(defn euler8 [] 
+;    (apply max (map #(product-of-n-consecutive-digits-at 5 % prob8-data) (range 0 (- (count prob8-data) 5)))))
+;
+;(assert (= 40824 (euler8)))
+;
+;
+;; Problem 9
+;;A Pythagorean triplet is a set of three natural numbers, a  b  c, for which,
+;; a^2 + b^2 = c^2
+;; For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
 ;;
-;; We can see that 28 is the first triangle number to have over five divisors.
-;;
-;; What is the value of the first triangle number to have over five hundred divisors?
+;; There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+;; Find the product abc.
+;
+;(defn find-a-pythagorean-triplet-with-sum 
+;    ([sum] (find-a-pythagorean-triplet-with-sum sum 0 0 0))
+;    ([sum a b c]
+;        (if (and (= (+ (square a) (square b)) (square c)) (= (+ a b c) sum))
+;            (list a b c)
+;            (if (>= c sum)
+;                (if (>= b sum)
+;                    (if (>= a sum)
+;                        (throw "should not get here")
+;                        (recur sum (+ a 1) (+ a 2) (+ a 3)))
+;                    (recur sum a (+ b 1) (+ b 2)))
+;                (recur sum a b (+ c 1))))))
+;
+;(defn pythagorean-product [sum]
+;    (apply * (find-a-pythagorean-triplet-with-sum sum)))
+;
+;(assert (= 60 (pythagorean-product 12)))
+;
+;(defn euler9 []
+;    (pythagorean-product 1000))
+;
+;(assert (= 31875000 (euler9))) ; Slow
+;
+;
+;; Problem 10
+;; The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+;; Find the sum of all the primes below two million.
+;
+;(defn sum-of-primes-below
+;    ([max] (sum-of-primes-below max 2 0))
+;    ([max n acc]
+;        (if (>= n max)
+;            acc
+;            (recur max (+ n 1) (+ (if (prime? n) n 0) acc)))))
+;
+;(def sum-of-primes-below (memoize sum-of-primes-below))
+;
+;(assert (= 17 (sum-of-primes-below 10)))
+;
+;(defn euler10 []
+;    (sum-of-primes-below 2000000))
+;
+;(assert (= 142913828922 (euler10)))
+;
+;
+;;;; Problem 11
+;;; The sequence of triangle numbers is generated by adding the natural numbers. So the 7^(th) triangle number would be 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28. The first ten terms would be:
+;;;
+;;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
+;;;
+;;; Let us list the factors of the first seven triangle numbers:
+;;; 
+;;;     1: 1
+;;;     3: 1,3
+;;;     6: 1,2,3,6
+;;;    10: 1,2,5,10
+;;;    15: 1,3,5,15
+;;;    21: 1,3,7,21
+;;;    28: 1,2,4,7,14,28
+;;;
+;;; We can see that 28 is the first triangle number to have over five divisors.
+;;;
+;;; What is the value of the first triangle number to have over five hundred divisors?
+;
+;;; TODO: Memoize
+;(defn triangle-number [n]
+;    (apply + (range 1 (inc n))))
+;
+;(assert (= 28 (triangle-number 7)))
+;
+;(defn first-n-divisors-of-m
+;    ([n m]
+;     "Returns the first n divisors of m.  If there are less than n, all divisors are returned."
+;     (first-n-divisors-of-m n m 2 []))
+;    ([n m i acc]
+;     (if (or (>= (count acc) n) (> i (/ m 2)))
+;         acc
+;         (recur n m (+ i 1) (if (factor? m i)
+;                                (conj acc i)
+;                                acc)))))
+;
+;(defn find-lowest-triangle-number-with-more-than-n-divisors 
+;   ([n] find-lowest-triangle-number-with-more-than-n-divisors n 1)
+;   ([n i]
+;    (println "wtf")))
+;;;     (let [t (triangle-number i)
+;;;         divisors (first-n-divisors-of-m (inc n) t)]
+;;;       (println (str "t " t " divisors " divisors))
+;;;       (if (> (count divisors) n)
+;;;       t
+;;;       (recur n (+ i 1))))))
+;
+;
+;;(defn euler11 []
+;;  (find-lowest-triangle-number-with-more-than-n-divisors 500))
 
-;; TODO: Memoize
-(defn triangle-number [n]
-    (apply + (range 1 (inc n))))
-
-(assert (= 28 (triangle-number 7)))
-
-(defn first-n-divisors-of-m
-    ([n m]
-     "Returns the first n divisors of m.  If there are less than n, all divisors are returned."
-     (first-n-divisors-of-m n m 2 []))
-    ([n m i acc]
-     (if (or (>= (count acc) n) (> i (/ m 2)))
-         acc
-         (recur n m (+ i 1) (if (factor? m i)
-                                (conj acc i)
-                                acc)))))
-
-(defn find-lowest-triangle-number-with-more-than-n-divisors 
-   ([n] find-lowest-triangle-number-with-more-than-n-divisors n 1)
-   ([n i]
-    (println "wtf")))
-;;     (let [t (triangle-number i)
-;; 	    divisors (first-n-divisors-of-m (inc n) t)]
-;;       (println (str "t " t " divisors " divisors))
-;;       (if (> (count divisors) n)
-;; 	  t
-;; 	  (recur n (+ i 1))))))
-
-
-;(defn euler11 []
-;  (find-lowest-triangle-number-with-more-than-n-divisors 500))
+;; TODO: use with-command-line-args to do some stuff.
