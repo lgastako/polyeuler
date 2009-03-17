@@ -6,13 +6,42 @@ answers to each of the euler problems in order, or, if invoked with arguments
 treats the arguments as problem numbers and prints the answer to the
 appropriate problems.
 
+CURRENT SOLUTIONS
+=================
+(Languages with at least one solution implemented (number of solutions
+in parens)):
+
+C (2) +cli
+Clojure (3+) -cli
+Erlang (2) -cli
+Javascript (2) +cli
+Common LISP (2) +partial cli
+Lua (3) +cli
+Pascal (2) -cli
+Perl (2) +cli
+Python (2) + cli
+Ruby (2) +cli
+Scheme (2) -cli
+Haskell (20) -cli
+
+That's 12 languages with 43 (overlapping) solutions.
+
+COMING SOON
+===========
+Languages I have created the files for but don't have any working
+solutions yet:
+
+Rebol
+
+
 Missing languages that I would like to add:
+
+OCaml
 Objective-C
 Logo
 Mathematica
 R
 Oz
-OCaml
 PHP? Maybe not, just on principal.
 Prolog
 Postscript
