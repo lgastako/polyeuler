@@ -6,6 +6,19 @@ answers to each of the euler problems in order, or, if invoked with arguments
 treats the arguments as problem numbers and prints the answer to the
 appropriate problems.
 
+Missing languages that I would like to add:
+Objective-C
+Logo
+Mathematica
+R
+Oz
+OCaml
+PHP? Maybe not, just on principal.
+Prolog
+Postscript
+SQL?
+
 -
 John Evans
 john@jpevans.com
+
