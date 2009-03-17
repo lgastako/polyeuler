@@ -1,6 +1,9 @@
 /* Project Euler in Javascript
  * (Specifically Rhino JavaScript-C 1.6 2006-11-19)
  * John Evans <john@jpevans.com>
+ *
+ * To invoke:
+ * "js euler"
  */
 
 
