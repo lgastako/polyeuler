@@ -1,6 +1,5 @@
 -module(euler).
--export([euler1/0,euler2/0]).
-%,euler2/0]).
+-export([euler1/0,euler2/0,euler3/0,is_prime/1]).
 
 
 % Euler #1
@@ -38,3 +37,35 @@ e2acc(A, B, ACC) ->
     e2acc(B, C, e2_next_acc(ACC, C)).
 
 euler2() -> e2acc(1, 2, 2).
+
+
+% Euler #3
+% Answer: 6857
+%
+% The prime factors of 13195 are 5, 7, 13 and 29.
+%
+% What is the largest prime factor of the number 600851475143 ?
+
+ceiling(X) ->
+    T = erlang:trunc(X),
+    case (X - T) of
+        Neg when Neg < 0 -> T;
+        Pos when Pos > 0 -> T + 1;
+        _ -> T
+    end.
+
+is_prime_search(1, _) -> true;
+is_prime_search(N, PP) when PP rem N == 0 -> false;
+is_prime_search(N, PP) -> is_prime_search(N - 1, PP).
+
+is_prime(PP) -> is_prime_search(ceiling(math:sqrt(PP)), PP).
+
+e3search(0, _) -> {error, boom};
+e3search(N, Target) when Target rem N == 0 ->
+    case is_prime(N) of
+        true -> N;
+        _ -> e3search(N - 1, Target)
+    end;
+e3search(N, Target) -> e3search(N - 1, Target).
+
+euler3() -> e3search(ceiling(math:sqrt(600851475143)), 600851475143).
