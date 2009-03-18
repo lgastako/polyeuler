@@ -1,5 +1,5 @@
 -module(euler).
--export([euler1/0,euler2/0,euler3/0,euler4/0]).
+-export([euler1/0,euler2/0,euler3/0,euler4/0,euler5/0]).
 
 
 % Euler #1
@@ -109,3 +109,29 @@ e4search(A, B, ACC) ->
         end).
 
 euler4() -> e4search(999, 999, 0).
+
+
+% Problem #5
+% Answer: ?
+%
+% 2520 is the smallest number that can be divided by each of the
+% numbers from 1 to 10 without any remainder.
+%
+% What is the smallest number that is evenly divisible by all of the
+% numbers from 1 to 20?
+
+divisible_by_all(_, []) -> true;
+divisible_by_all(N, PotentialDivisors) ->
+    [H|T] = PotentialDivisors,
+    case N rem H of
+        0 -> divisible_by_all(N, T);
+        _ -> false
+    end.
+
+e5search(N) ->
+    case divisible_by_all(N, [20,19,18,17,16,15,14,13,12,11]) of
+        true -> true;
+        _ -> e5search(N + 1)
+    end.
+
+euler5() -> e5search(2520).
