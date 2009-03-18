@@ -4,6 +4,7 @@
 # John Evans <john@jpevans.com>
 
 import sys
+import math
 
 def euler1():
     """Euler #1
@@ -44,10 +45,34 @@ def euler2():
     return n
 
 
+def is_prime(n):
+    for x in range(2, int(math.ceil(math.sqrt(n)))):
+        if n % x == 0:
+            return False
+    return True
+
+
+def euler3():
+    """Euler #3:
+    Answer: 6857
+
+    The prime factors of 13195 are 5, 7, 13 and 29.
+    What is the largest prime factor of the number 600851475143 ?
+
+    """
+
+    X = 600851475143
+    n = math.ceil(math.sqrt(X))
+    while True:
+        if X % n == 0 and is_prime(n):
+            return n
+        n -= 1
+
 
 EULERS = [
     euler1,
-    euler2
+    euler2,
+    euler3
 ]
 
 
