@@ -44,6 +44,7 @@ function euler2()
     return n
 end
 
+
 -- Euler #3:
 -- Answer: 6857
 --
