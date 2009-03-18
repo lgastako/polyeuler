@@ -12,7 +12,7 @@ CURRENT SOLUTIONS
 in parens)):
 
 C (2) +cli
-Clojure (3+) -cli
+Clojure (4+) -cli
 Erlang (5) -cli
 Javascript (2) +cli
 Common LISP (2) +partial cli
@@ -24,7 +24,7 @@ Ruby (2) +cli
 Scheme (2) -cli
 Haskell (20) -cli
 
-That's 12 languages with 50 (overlapping) solutions.
+That's 12 languages with 51 (overlapping) solutions.
 
 COMING SOON
 ===========
