@@ -108,44 +108,44 @@
 
 (assert (= 6857 (euler3)))
 
-;; Problem 4
-;; A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.
-;; Find the largest palindrome made from the product of two 3-digit numbers.
-;
-;(defn palindrome? [s]
-;    (let [len (count s)]
-;        (and
-;            (= (first s) (last s))
-;            (or (>= 1 len)
-;                (recur (. s (substring 1 (dec len))))))))
-;
-;(defn palindrome-start-digit 
-;    ([n] (palindrome-start-digit n ""))
-;    ([n s]
-;        (if (<= n 0)
-;            (str-to-int s)
-;            (recur (- n 1) (str s "9")))))
-;
-;(defn largest-palindromic-number
-;    ([num-digits] 
-;        (let [start (palindrome-start-digit num-digits)]
-;            (largest-palindromic-number num-digits start start start 0)))
-;    ([num-digits x y start acc]
-;        (if (< (count (str x)) num-digits)
-;            acc
-;            (if (< (count (str y)) num-digits)
-;                (recur num-digits (- x 1) start start acc)
-;                (let [n (* x y)]
-;                    (recur num-digits x (- y 1) start (if (and (> n acc ) (palindrome? (str n))) n acc)))))))
-;
-;(assert (= (largest-palindromic-number 2)))
-;
-;(defn euler4 []
-;    (largest-palindromic-number 3))
-;
-;(assert (= 906609 (euler4)))
-;
-;
+; Problem 4
+; Answer: 906609
+; A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.
+; Find the largest palindrome made from the product of two 3-digit numbers.
+
+(defn palindrome? [s]
+    (let [len (count s)]
+        (and
+            (= (first s) (last s))
+            (or (>= 1 len)
+                (recur (. s (substring 1 (dec len))))))))
+
+(defn palindrome-start-digit 
+    ([n] (palindrome-start-digit n ""))
+    ([n s]
+        (if (<= n 0)
+            (str-to-int s)
+            (recur (- n 1) (str s "9")))))
+
+(defn largest-palindromic-number
+    ([num-digits] 
+        (let [start (palindrome-start-digit num-digits)]
+            (largest-palindromic-number num-digits start start start 0)))
+    ([num-digits x y start acc]
+        (if (< (count (str x)) num-digits)
+            acc
+            (if (< (count (str y)) num-digits)
+                (recur num-digits (- x 1) start start acc)
+                (let [n (* x y)]
+                    (recur num-digits x (- y 1) start (if (and (> n acc ) (palindrome? (str n))) n acc)))))))
+
+(assert (= (largest-palindromic-number 2)))
+
+(defn euler4 []
+    (largest-palindromic-number 3))
+
+(assert (= 906609 (euler4)))
+
 ;; Problem 5
 ;; 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 ;; What is the smallest number that is evenly divisible by all of the numbers from 1 to 20?
