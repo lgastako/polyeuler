@@ -11,9 +11,10 @@ CURRENT SOLUTIONS
 (Languages with at least one solution implemented (number of solutions
 in parens)):
 
-C (2) +cli
+C (3) +cli
 Clojure (4+) -cli
 Erlang (5) -cli
+Java (2) +cli
 Javascript (2) +cli
 Common LISP (2) +partial cli
 Lua (4) +cli
@@ -24,7 +25,7 @@ Ruby (2) +cli
 Scheme (2) -cli
 Haskell (20) -cli
 
-That's 12 languages with 51 (overlapping) solutions.
+That's 13 languages with 54 (overlapping) solutions.
 
 COMING SOON
 ===========
@@ -36,6 +37,7 @@ Rebol
 
 Missing languages that I would like to add:
 
+Scala
 OCaml
 Objective-C
 Logo
