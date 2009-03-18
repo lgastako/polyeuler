@@ -1,5 +1,5 @@
 -module(euler).
--export([euler1/0,euler2/0,euler3/0,is_prime/1]).
+-export([euler1/0,euler2/0,euler3/0,euler4/0]).
 
 
 % Euler #1
@@ -69,3 +69,43 @@ e3search(N, Target) when Target rem N == 0 ->
 e3search(N, Target) -> e3search(N - 1, Target).
 
 euler3() -> e3search(ceiling(math:sqrt(600851475143)), 600851475143).
+
+
+% Problem #4
+% Answer: 906609
+%
+% A palindromic number reads the same both ways. The largest
+% palindrome made from the product of two 2-digit numbers is 9009 =
+% 91 99.
+%
+% Find the largest palindrome made from the product of two 3-digit
+% numbers.
+
+% Can't find this in Erlang, though I'm sure it's there:
+max(X, Y) when X > Y -> X;
+max(_, Y) -> Y.
+
+% Since we know we are checking numbers we don't have to worry about
+% spaces or puncutation.
+is_palindromic_number(N) ->
+    S = integer_to_list(N),
+    S == lists:reverse(S).
+
+e4next_a(1) -> 999;
+e4next_a(A) -> A - 1.
+
+e4next_b(1, B) -> B - 1;
+e4next_b(_, B) -> B.
+
+e4search(1, 1, ACC) -> ACC;
+e4search(A, B, ACC) ->
+    C = A * B,
+    NewA = e4next_a(A),
+    NewB = e4next_b(A, B),
+    e4search(NewA, NewB, 
+        case is_palindromic_number(C) of
+            true -> max(C, ACC);
+            false -> ACC
+        end).
+
+euler4() -> e4search(999, 999, 0).
