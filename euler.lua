@@ -70,17 +70,42 @@ function is_prime(n)
     return true
 end
 
+
+-- Problem #4
+-- Answer: 906609
+-- 
+-- A palindromic number reads the same both ways. The largest
+-- palindrome made from the product of two 2-digit numbers is 9009 =
+-- 91 99.
+-- 
+-- Find the largest palindrome made from the product of two 3-digit
+-- numbers.
+function euler4()
+    r = 0
+    for a = 100, 1000, 1 do
+        for b = 100, 1000, 1 do
+            c = a * b
+            s = tostring(c)
+            if s == string.reverse(s) then
+                r = math.max(c, r)
+            end
+        end
+    end
+    return r
+end
+
 -------------------------------------------------------
 --  "main"... is there more idiomatic stuff missing?
 eulers = {
     euler1,
     euler2,
-    euler3
+    euler3,
+    euler4
 }
 
 if arg[1] then
     for _, a in ipairs(arg) do
-        print(a .. eulers[tonumber(a)]())
+        print("#" .. a .. ": " .. eulers[tonumber(a)]())
     end
 else
     for index, euler in ipairs(eulers) do
