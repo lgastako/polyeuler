@@ -112,7 +112,8 @@ euler4() -> e4search(999, 999, 0).
 
 
 % Problem #5
-% Answer: ?
+% Answer: 232792560
+% Took 6.8 minutes, so could be better.
 %
 % 2520 is the smallest number that can be divided by each of the
 % numbers from 1 to 10 without any remainder.
@@ -130,7 +131,7 @@ divisible_by_all(N, PotentialDivisors) ->
 
 e5search(N) ->
     case divisible_by_all(N, [20,19,18,17,16,15,14,13,12,11]) of
-        true -> true;
+        true -> N;
         _ -> e5search(N + 1)
     end.
 
