@@ -13,18 +13,18 @@ in parens)):
 
 C (2) +cli
 Clojure (3+) -cli
-Erlang (4) -cli
+Erlang (5) -cli
 Javascript (2) +cli
 Common LISP (2) +partial cli
-Lua (3) +cli
+Lua (4) +cli
 Pascal (2) -cli
 Perl (2) +cli
-Python (2) + cli
+Python (4) + cli
 Ruby (2) +cli
 Scheme (2) -cli
 Haskell (20) -cli
 
-That's 12 languages with 45 (overlapping) solutions.
+That's 12 languages with 50 (overlapping) solutions.
 
 COMING SOON
 ===========
