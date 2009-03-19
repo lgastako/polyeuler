@@ -36,7 +36,7 @@ Rebol
 
 
 Missing languages that I would like to add:
-
+===========================================
 Scala
 OCaml
 Objective-C
@@ -44,6 +44,7 @@ Prolog
 
 
 Maybe some day:
+===============
 Basic
 C#
 Logo
@@ -56,6 +57,9 @@ SQL?
 Maude
 Brainfuck
 Whitespace
+unix shells (bash / ksh / csh / tcsh / zsh)
+other misc unixy things (awk, sed, etc)
+TCL
 
 -
 John Evans
