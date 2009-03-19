@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 /* Euler #1
  * Answer: 233168
@@ -56,7 +57,7 @@ int is_prime(n) {
 }
 
 /* Euler #3:
- * Answer: 6857
+ * Answer: 6857 (not workign yet)
  *
  * The prime factors of 13195 are 5, 7, 13 and 29.
  *
@@ -73,6 +74,50 @@ int euler3() {
         }
     }
     return -1;
+}
+
+
+/* Problem #4
+ * Answer: 906609 (not working yet)
+ *
+ * A palindromic number reads the same both ways. The largest
+ * palindrome made from the product of two 2-digit numbers is 9009 =
+ * 91 99.
+ *
+ * Find the largest palindrome made from the product of two 3-digit
+ * numbers.
+ */
+int same_both_ways(char *s) {
+    int i = 0,
+        len = strlen(s),
+        mid = len/2;
+
+    for (;i<mid; i++) {
+        int j = (len - i) - 1;
+        if (s[i] != s[j]) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int euler4() {
+    int result = 0, a, b, c;
+    char *s;
+    for (a=100; a<1000; a++) {
+        for (b=100; b<1000; b++) {
+            c = a * b;
+            if (c > result) {
+                asprintf(&s, "%d", c);
+                if (same_both_ways(s)) {
+                    result = c;
+                }
+                free(s);
+            }
+        }
+    }
+    return result;
 }
 
 
