@@ -95,13 +95,45 @@ function euler4()
     return r
 end
 
+
+-- Problem #5
+-- Answer: 232792560
+--
+-- 2520 is the smallest number that can be divided by each of the
+-- numbers from 1 to 10 without any remainder.
+--
+-- What is the smallest number that is evenly divisible by all of the
+-- numbers from 1 to 20?
+
+function divisible_by_all(n, ds)
+    for _, d in ipairs(ds) do
+        if n % d ~= 0 then
+            return false
+        end
+    end
+    return true
+end
+
+
+function euler5()
+    n = 2520
+    while true do
+        if divisible_by_all(n, {20, 19, 18, 17, 16, 15, 14, 13, 12, 11}) then
+            return n
+        end
+        n = n + 1
+    end
+end
+
+
 -------------------------------------------------------
 --  "main"... is there more idiomatic stuff missing?
 eulers = {
     euler1,
     euler2,
     euler3,
-    euler4
+    euler4,
+    euler5,
 }
 
 if arg[1] then
