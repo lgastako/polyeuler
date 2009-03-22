@@ -149,8 +149,36 @@ function euler6()
     return (sum * sum) - sum_sq
 end
 
--------------------------------------------------------
---  "main"... is there more idiomatic stuff missing?
+
+-- Problem #7
+-- Answer: 104743
+--
+-- By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+--
+-- What is the 10001st prime number?
+
+function euler7()
+    n = 2
+    primes = {}
+    while true do
+        is_prime = true
+        for _, v in ipairs(primes) do
+            if n % v == 0 then
+                is_prime = false
+                break
+            end
+        end
+        if is_prime then
+            if # primes >= 10000 then
+                return n
+            end
+            table.insert(primes, n)
+        end
+        n = n + 1
+    end
+end
+
+
 eulers = {
     euler1,
     euler2,
@@ -158,14 +186,22 @@ eulers = {
     euler4,
     euler5,
     euler6,
+    euler7,
 }
 
-if arg[1] then
-    for _, a in ipairs(arg) do
-        print("#" .. a .. ": " .. eulers[tonumber(a)]())
-    end
-else
-    for index, euler in ipairs(eulers) do
-        print("#" .. tostring(index) .. ": " .. tostring(euler()))
+function main()
+    if arg[1] then
+        for _, a in ipairs(arg) do
+            print("#" .. a .. ": " .. eulers[tonumber(a)]())
+        end
+    else
+        for index, euler in ipairs(eulers) do
+            print("#" .. tostring(index) .. ": " .. tostring(euler()))
+        end
     end
 end
+
+-------------------------------------------------------
+--  "main"... is there more idiomatic stuff missing?
+-- (e.g. if __name__ == "__main__" type of stuff?)
+main()
