@@ -1,6 +1,6 @@
 -module(euler).
--export([euler1/0, euler2/0, euler3/0, euler4/0, euler5/0, euler6/0]).
--export([sum_of_squares/2, square_of_sum/2]).
+-export([euler1/0, euler2/0, euler3/0, euler4/0, euler5/0, euler6/0,
+         euler7/0]).
 
 
 % Euler #1
@@ -171,3 +171,33 @@ square_of_sum(Min, Max) -> square(sum_range(Min, Max)).
 euler6() -> square_of_sum(1, 100) - sum_of_squares(1, 100).
 
 
+% Problem #7
+% Answer: 104743
+% 
+% By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, 
+% we can see that the 6th prime is 13.
+%
+% What is the 10001st prime number?
+
+divisible_by_any(_, []) -> false;
+divisible_by_any(N, [Head|_]) when N rem Head == 0 -> true;
+divisible_by_any(N, [_|Tail]) -> divisible_by_any(N, Tail).
+
+next_prime(Primes, N) ->
+    case divisible_by_any(N, Primes) of
+        true -> next_prime(Primes, N + 1);
+        _ -> N
+    end.
+
+next_prime([]) -> 2;
+next_prime([Head|Tail]) -> next_prime([Head|Tail], Head + 1).
+
+tail([_|Tail]) -> Tail.
+
+nth_prime(N, Primes) when length(Primes) > N -> nth_prime(N, tail(Primes));
+nth_prime(N, [Head|Tail]) when length([Head|Tail]) == N -> Head;
+nth_prime(N, Primes) -> nth_prime(N, [next_prime(Primes)|Primes]).
+
+nth_prime(N) -> nth_prime(N, []).
+
+euler7() -> nth_prime(10001).
