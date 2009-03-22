@@ -1,5 +1,6 @@
 -module(euler).
--export([euler1/0,euler2/0,euler3/0,euler4/0,euler5/0]).
+-export([euler1/0, euler2/0, euler3/0, euler4/0, euler5/0, euler6/0]).
+-export([sum_of_squares/2, square_of_sum/2]).
 
 
 % Euler #1
@@ -28,13 +29,13 @@ euler1() -> e1acc(1, 1000, 0).
 % Find the sum of all the even-valued terms in the sequence which do not
 % exceed four million.
 
-e2_next_acc(ACC, C) when C rem 2 == 0 -> ACC + C;
-e2_next_acc(ACC, _) -> ACC.
+e2_next(ACC, C) when C rem 2 == 0 -> ACC + C;
+e2_next(ACC, _) -> ACC.
 
 e2acc(_, B, ACC) when B > 4000000 -> ACC;
 e2acc(A, B, ACC) ->
     C = A + B,
-    e2acc(B, C, e2_next_acc(ACC, C)).
+    e2acc(B, C, e2_next(ACC, C)).
 
 euler2() -> e2acc(1, 2, 2).
 
@@ -136,3 +137,37 @@ e5search(N) ->
     end.
 
 euler5() -> e5search(2520).
+
+
+% Problem #6
+% Answer: 25164150
+%
+% The sum of the squares of the first ten natural numbers is,
+%     1² + 2² + ... + 10² = 385
+% The square of the sum of the first ten natural numbers is,
+%     (1 + 2 + ... + 10)² = 55² = 3025
+% Hence the difference between the sum of the squares of the first
+% ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+%
+% Find the difference between the sum of the squares of the first one
+% hundred natural numbers and the square of the sum.
+
+square(N) -> N * N.
+
+sum_of_squares(Min, Max, Acc) when Min > Max -> sum_of_squares(Max, Min, Acc);
+sum_of_squares(Min, Max, Acc) when Min == Max -> square(Min) + Acc;
+sum_of_squares(Min, Max, Acc) -> sum_of_squares(Min + 1, Max, square(Min) + Acc).
+
+sum_of_squares(Min, Max) -> sum_of_squares(Min, Max, 0).
+
+sum_range(Min, Max, Acc) when Min > Max -> sum_range(Max, Min, Acc);
+sum_range(Min, Max, Acc) when Min == Max -> Min + Acc;
+sum_range(Min, Max, Acc) -> sum_range(Min + 1, Max, Min + Acc).
+
+sum_range(Min, Max) -> sum_range(Min + 1, Max, Min).
+
+square_of_sum(Min, Max) -> square(sum_range(Min, Max)).
+
+euler6() -> square_of_sum(1, 100) - sum_of_squares(1, 100).
+
+
