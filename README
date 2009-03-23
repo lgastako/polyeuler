@@ -27,16 +27,9 @@ Haskell (20) -cli
 
 That's 13 languages with 62 (overlapping) solutions.
 
-COMING SOON
-===========
-Languages I have created the files for but don't have any working
-solutions yet:
 
-Rebol
-
-
-Missing languages that I would like to add:
-===========================================
+Missing languages that I would like to (and probably will) add:
+===============================================================
 Scala
 OCaml
 Objective-C
@@ -61,6 +54,7 @@ unix shells (bash / ksh / csh / tcsh / zsh)
 other misc unixy things (awk, sed, etc)
 TCL
 Rexx
+Rebol
 
 -
 John Evans
