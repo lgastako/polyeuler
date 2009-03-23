@@ -124,3 +124,46 @@
 
 (define (euler5)
     (euler5-accumulate 2520))
+
+
+;; Problem #6
+;; Answer: 25164150
+;;
+;; The sum of the squares of the first ten natural numbers is,
+;;     1² + 2² + ... + 10² = 385
+;; The square of the sum of the first ten natural numbers is,
+;;     (1 + 2 + ... + 10)² = 55² = 3025
+;; Hence the difference between the sum of the squares of the first
+;; ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+;;
+;; Find the difference between the sum of the squares of the first one
+;; hundred natural numbers and the square of the sum.
+
+(define (square n)
+    (* n n))
+
+(define (sum-from-to-acc from to acc)
+    (if (> from to)
+        (sum-from-to-acc to from acc)
+        (if (= from to)
+            (+ to acc)
+            (sum-from-to-acc (+ 1 from) to (+ from acc)))))
+
+(define (sum-from-to from to)
+    (sum-from-to-acc from to 0))
+
+(define (sum-of-squares-acc from to acc)
+    (if (> from to)
+        (sum-of-squares-acc to from acc)
+        (if (= from to)
+            (+ (square to) acc)
+            (sum-of-squares-acc (+ 1 from) to (+ (square from) acc)))))
+
+(define (sum-of-squares from to)
+    (sum-of-squares-acc from to 0))
+
+(define (square-of-sum from to)
+    (square (sum-from-to from to)))
+
+(define (euler6)
+    (- (square-of-sum 1 100) (sum-of-squares 1 100)))
