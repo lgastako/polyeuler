@@ -99,3 +99,28 @@
 
 (define (euler4)
     (euler4-accumulate 100 100 0))
+
+
+;; Problem #5
+;; Answer: 232792560
+;;
+;; 2520 is the smallest number that can be divided by each of the
+;; numbers from 1 to 10 without any remainder.
+;;
+;; What is the smallest number that is evenly divisible by all of the
+;; numbers from 1 to 20?
+
+(define (divisible-by-all? n xs)
+    (if (>= 0 (length xs))
+        #t
+        (if (not (= 0 (modulo n (car xs))))
+            #f
+            (divisible-by-all? n (cdr xs)))))
+
+(define (euler5-accumulate n)
+    (if (divisible-by-all? n '(20 19 18 17 16 15 14 13 12 11))
+        n
+        (euler5-accumulate (+ n 1))))
+
+(define (euler5)
+    (euler5-accumulate 2520))
