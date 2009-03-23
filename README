@@ -6,6 +6,7 @@ answers to each of the euler problems in order, or, if invoked with arguments
 treats the arguments as problem numbers and prints the answer to the
 appropriate problems.
 
+
 CURRENT SOLUTIONS
 =================
 (Languages with at least one solution implemented (number of solutions
@@ -21,11 +22,11 @@ Lua (7) +cli
 Pascal (2) -cli
 Perl (2) +cli
 Python (4) + cli
-Ruby (2) +cli
+Ruby (2+) +cli
 Scheme (6) -cli
-Haskell (20) -cli
+Haskell (20+) -cli
 
-That's 13 languages with 62 (overlapping) solutions.
+That's 13 languages with 62+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
