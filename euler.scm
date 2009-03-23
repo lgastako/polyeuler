@@ -48,18 +48,18 @@
 ;;
 ;; What is the largest prime factor of the number 600851475143 ?
 
-(define (is-prime-acc n x)
+(define (prime?-acc n x)
     (if (or (< x 2) (= n 2))
         #t
         (if (= 0 (modulo n x))
             #f
-            (is-prime-acc n (- x 1)))))
+            (prime?-acc n (- x 1)))))
 
-(define (is-prime n)
-    (is-prime-acc n (inexact->exact (ceiling (sqrt n)))))
+(define (prime? n)
+    (prime?-acc n (inexact->exact (ceiling (sqrt n)))))
 
 (define (euler3-accumulate f n)
-    (if (and (= 0 (modulo n f)) (is-prime f))
+    (if (and (= 0 (modulo n f)) (prime? f))
         f
         (euler3-accumulate (- f 1) n)))
 
