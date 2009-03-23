@@ -66,3 +66,36 @@
 (define (euler3)
     (let ((x 600851475143))
         (euler3-accumulate (inexact->exact (ceiling (sqrt x))) x)))
+
+
+;; Problem #4
+;; Answer: 906609
+;;
+;; A palindromic number reads the same both ways. The largest
+;; palindrome made from the product of two 2-digit numbers is 9009 =
+;; 91 99.
+;;
+;; Find the largest palindrome made from the product of two 3-digit
+;; numbers.
+
+;; This is supposed to be in the language but I can't find it / figure out
+;; how to import the right namespace / whatever, so...
+(define (reverse-string s)
+    (list->string (reverse (string->list s))))
+
+(define (is-palindromic-number n)
+    (let ((s (number->string n)))
+        (string=? s (reverse-string s))))
+
+(define (euler4-accumulate x y acc)
+    (if (> y 999)
+        acc
+        (if (> x 999)
+            (euler4-accumulate 100 (+ 1 y) acc)
+            (let ((p (* x y)))
+                (euler4-accumulate (+ 1 x) y (if (and (> p acc) (is-palindromic-number p))
+                                                  p
+                                                  acc))))))
+
+(define (euler4)
+    (euler4-accumulate 100 100 0))
