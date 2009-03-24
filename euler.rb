@@ -43,10 +43,41 @@ def euler2
     n
 end
 
+# Euler #3
+# Answer: 6857
+#
+# The prime factors of 13195 are 5, 7, 13 and 29.
+#
+# What is the largest prime factor of the number 600851475143 ?
+
+class Fixnum
+    def prime?
+        if self == 2
+            return true
+        end
+        (2..(Math.sqrt(self).ceil)).each do |possible_factor|
+            if self % possible_factor == 0
+                return false
+            end
+        end
+        return true
+    end
+end
+
+def euler3
+    target = 600851475143
+    Math.sqrt(target).ceil.downto(2) do |n|
+        if target % n == 0 and n.prime?
+            return n
+        end
+    end
+end
+
 
 EULERS = [
     euler1,
-    euler2
+    euler2,
+    euler3
 ]
 
 
