@@ -23,10 +23,10 @@ Pascal (2) -cli
 Perl (2) +cli
 Python (4) + cli
 Ruby (2+) +cli
-Scheme (6) -cli
+Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 13 languages with 62+ (overlapping) solutions.
+That's 13 languages with 63+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
