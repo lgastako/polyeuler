@@ -167,3 +167,41 @@
 
 (define (euler6)
     (- (square-of-sum 1 100) (sum-of-squares 1 100)))
+
+
+;; Problem #7
+;; Answer: 104743
+;; NOTE: Way too slow, but got the right answer.
+;;
+;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13,
+;; we can see that the 6th prime is 13.
+;;
+;; What is the 10001st prime number?
+
+(define (divisible-by-any? n xs)
+  (if (>= 0 (length xs))
+      #f
+      (if (= 0 (modulo n (car xs)))
+          #t
+          (divisible-by-any? n (cdr xs)))))
+
+(define (next-prime-acc primes n)
+  (if (divisible-by-any? n primes)
+      (next-prime-acc primes (+ n 1))
+      n))
+
+(define (next-prime primes)
+  (next-prime-acc primes (+ 1 (car primes))))
+
+(define (find-nth-prime-acc n primes)
+  (if (< n (length primes))
+      (find-nth-prime-acc n (cdr primes))
+      (if (= n (length primes))
+          (car primes)
+          (find-nth-prime-acc n (cons (next-prime primes) primes)))))
+
+(define (find-nth-prime n)
+  (find-nth-prime-acc n '(2)))
+
+(define (euler7)
+    (find-nth-prime 10001))
