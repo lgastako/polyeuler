@@ -64,6 +64,7 @@ class Fixnum
     end
 end
 
+
 def euler3
     target = 600851475143
     Math.sqrt(target).ceil.downto(2) do |n|
@@ -73,17 +74,47 @@ def euler3
     end
 end
 
+# Problem #4
+# Answer: 906609
+#
+# A palindromic number reads the same both ways. The largest
+# palindrome made from the product of two 2-digit numbers is 9009 =
+# 91 99.
+#
+# Find the largest palindrome made from the product of two 3-digit
+# numbers.
+
+class Fixnum
+    def palindrome?
+        "#{self}" == "#{self}".reverse
+    end
+end
+
+
+def euler4
+    result = 0
+    (100..999).each do |a|
+        (100..999).each do |b|
+            p = a * b
+            if p > result and p.palindrome?
+                result = p
+            end
+        end
+    end
+    result
+end
+
 
 EULERS = [
     euler1,
     euler2,
-    euler3
+    euler3,
+    euler4
 ]
 
 
 if __FILE__ == $0
     if ARGV.length > 0
-        puts "ARGV"
         for arg in ARGV
             puts "#{arg}: #{eval("euler#{arg}")}"
         end
