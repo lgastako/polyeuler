@@ -110,8 +110,64 @@ program euler;
                 end;
     end;
 
+
+    (* Problem #4
+       Answer: 906609 - doesn't work yet.
+
+       A palindromic number reads the same both ways. The largest
+       palindrome made from the product of two 2-digit numbers is 9009 =
+       91 99.
+
+       Find the largest palindrome made from the product of two 3-digit
+       numbers.
+    *)
+
+    (* ghetto *)
+    procedure swap(s : string; i : integer; j : integer);
+    var 
+        tmp : char;
+    begin
+        tmp := s[i];
+        s[i] := s[j];
+        s[j] := tmp;
+    end;
+
+    function reverse(s : string) : string;
+    var
+        i : integer;
+        len : integer;
+    begin
+        len := length(s);
+        for i := 0 to trunc(len/2.0) do
+            swap(s, i, len-i);
+        reverse := s;
+    end;
+
+    function is_palindromic_number(n :integer) : boolean;
+    var
+        s : String[6];
+    begin
+        Str(n, s);
+        is_palindromic_number := s = reverse(s);
+    end;
+
+    function euler4 : integer;
+    var
+        i : integer;
+        j : integer;
+        p : integer;
+        result : integer = 0;
+    begin
+        for i := 100 to 999 do
+            for j := 100 to 999 do
+                if (p > result) and is_palindromic_number(p) then
+                    euler4 := p;
+    end;
+
+
 begin
     writeln(euler1());
     writeln(euler2());
     writeln(euler3());
+    writeln(euler4());
 end.
