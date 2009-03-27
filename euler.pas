@@ -16,10 +16,10 @@ program euler;
        Find the sum of all the multiples of 3 or 5 below 1000.
     *)
     function euler1 : integer;
-    var n : integer;
-    var i : integer;
+    var
+        n : integer = 0;
+        i : integer;
     begin
-        n := 0;
         for i := 1 to 999 do
         begin
             if (i mod 3 = 0) or (i mod 5 = 0) then
@@ -42,14 +42,12 @@ program euler;
        exceed four million.
     *)
     function euler2 : integer;
-    var n : integer;
-    var a : integer;
-    var b : integer;
-    var c : integer;
+    var
+        n : integer = 2;
+        a : integer = 1;
+        b : integer = 2;
+        c : integer;
     begin
-        n := 2;
-        a := 1;
-        b := 2;
         while true do
             begin
                 c := a + b;
@@ -63,7 +61,57 @@ program euler;
         euler2 := n
     end;
 
+    function ceil(d : double) : integer;
+    begin
+        (* There is probably a more clever way to do this, but this gets the job done for now. *)
+        if frac(d) >= 0.5 then
+            ceil := round(d)
+        else
+            ceil := trunc(d)
+    end;
+
+    (* Euler #3
+       Answer: 6857
+
+       The prime factors of 13195 are 5, 7, 13 and 29.
+
+       What is the largest prime factor of the number 600851475143 ?
+    *)
+    function is_prime(n : integer) : boolean;
+    var
+        i : integer;
+        result : boolean = true;
+    begin
+        if n <> 2 then
+            for i := 2 to ceil(sqrt(n)) do
+                begin
+                    if n mod i = 0 then
+                        begin
+                            result := false;
+                            break;
+                        end;
+                end;
+        is_prime := result;
+    end;
+
+
+    function euler3 : integer;
+    const
+        target : LongInt = 600851475143;
+    var
+        i : integer;
+        stop : boolean = true;
+    begin
+        for i := ceil(sqrt(target)) downto 2 do
+            if (target mod i = 0) and is_prime(i) then
+                begin
+                    euler3 := i;
+                    break;
+                end;
+    end;
+
 begin
     writeln(euler1());
     writeln(euler2());
+    writeln(euler3());
 end.
