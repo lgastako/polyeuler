@@ -4,7 +4,7 @@
 # John Evans <john@jpevans.com>
 
 use Strict;
-
+use POSIX;
 
 # Euler #1
 # Answer: 233168
@@ -16,7 +16,8 @@ use Strict;
 
 sub euler1
 {
-    $n = 0;
+    my $n = 0;
+    my $i;
     for ($i=1; $i<1000; $i++) {
         if (($i % 3 == 0) || ($i % 5 == 0)) {
             $n += $i;
@@ -39,11 +40,11 @@ sub euler1
 
 sub euler2
 {
-    $n = 2;
-    $a = 1;
-    $b = 2;
+    my $n = 2;
+    my $a = 1;
+    my $b = 2;
     while (1) {
-        $c = $a + $b;
+        my $c = $a + $b;
         if ($c > 4000000) {
             last;
         }
@@ -57,7 +58,43 @@ sub euler2
 }
 
 
-@EULERS = (\&euler1, \&euler2);
+# Euler #3
+# Answer: 6857
+#
+# The prime factors of 13195 are 5, 7, 13 and 29.
+#
+# What is the largest prime factor of the number 600851475143 ?
+
+sub is_prime
+{
+    my $n = $_[0];
+    if ($n == 2) {
+        return 1;
+    }
+    my $i;
+    for ($i=2; $i <= POSIX::ceil(sqrt($n)); $i++) {
+        if ($n % $i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+sub euler3
+{
+    my $target = 600851475143;
+    my $i;
+
+    for ($i=POSIX::ceil(sqrt($target)); $i > 2; $i--) {
+        if ($target % $i == 0 && is_prime($i)) {
+            return $i;
+        }
+    }
+}
+
+
+@EULERS = (\&euler1, \&euler2, \&euler3);
 
 if (@ARGV) {
     foreach $arg (@ARGV) {
