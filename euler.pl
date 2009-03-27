@@ -3,7 +3,7 @@
 # Project Euler in Perl
 # John Evans <john@jpevans.com>
 
-use Strict;
+use strict;
 use POSIX;
 
 # Euler #1
@@ -94,17 +94,63 @@ sub euler3
 }
 
 
-@EULERS = (\&euler1, \&euler2, \&euler3);
+# Problem #4
+# Answer: 906609
+#
+# A palindromic number reads the same both ways. The largest
+# palindrome made from the product of two 2-digit numbers is 9009 =
+# 91 99.
+#
+# Find the largest palindrome made from the product of two 3-digit
+# numbers.
 
-if (@ARGV) {
-    foreach $arg (@ARGV) {
-        $result = eval("euler$arg");
-        print("$arg: $result\n")
+sub is_palindromic_number
+{
+    my $n = $_[0];
+    my $s = "$n";
+    return $s eq reverse($s);
+}
+
+sub euler4
+{
+    my ($i, $j, $p);
+    my $result = 0;
+
+    for ($i=100; $i<1000; $i++) {
+        for ($j=100; $j<1000; $j++) {
+            $p = $i * $j;
+            if ($p > $result && is_palindromic_number($p)) {
+                $result = $p;
+            }
+        }
     }
-} else {
-    foreach $index (0..$#EULERS) {
-        $euler = $EULERS[$index];
-        $n = $index + 1;
-        print("$n: " . &$euler() . "\n");
+
+    return $result;
+}
+
+
+sub main {
+    my @EULERS = (
+        \&euler1,
+        \&euler2,
+        \&euler3,
+        \&euler4
+    );
+
+    if (@ARGV) {
+        my $arg;
+        foreach $arg (@ARGV) {
+            my $result = eval("euler$arg");
+            print("$arg: $result\n")
+        }
+    } else {
+        my $index;
+        foreach $index (0..$#EULERS) {
+            my $euler = $EULERS[$index];
+            my $n = $index + 1;
+            print("$n: " . &$euler() . "\n");
+        }
     }
 }
+
+main();
