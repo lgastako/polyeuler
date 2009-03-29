@@ -2,6 +2,7 @@
 #include <math.h>
 #include <string.h>
 
+
 /* Euler #1
  * Answer: 233168
  *
@@ -47,8 +48,8 @@ int euler2() {
 }
 
 int is_prime(n) {
-    int i;
-    for (i = ceil(sqrt(n)); i > 0; i--) {
+    int i = ceil(sqrt(n));
+    for (;i > 2; i--) {
         if (n % i == 0) {
             return 0;
         }
@@ -57,19 +58,19 @@ int is_prime(n) {
 }
 
 /* Euler #3:
- * Answer: 6857 (not workign yet)
+ * Answer: 6857
  *
  * The prime factors of 13195 are 5, 7, 13 and 29.
  *
  * What is the largest prime factor of the number 600851475143 ?
  */
 int euler3() {
-    unsigned long long t = 600851475143;
+    unsigned long target = 600851475143;
     int i;
-    long double s = sqrtl(t);
-    long double c = (long double)ceill(s);
+    double s = sqrtl(target);
+    double c = (long double)ceill(s);
     for (i = c; i > 0; i--) {
-        if ((t % i == 0) && (is_prime(i))) {
+        if ((target % i == 0) && (is_prime(i))) {
             return i;
         }
     }
@@ -123,7 +124,7 @@ int euler4() {
 
 /* An array of the euler functions to make main easy.
  * I wonder if there's a way to eval e.g. ("euler%d", index) instead.
- */ 
+ */
 int (*EULERS[])() = {
     euler1,
     euler2,
