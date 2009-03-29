@@ -4,7 +4,7 @@ import org.apfloat.ApintMath;
 
 public class Euler
 {
-    public static final int MAX_IMPLEMENTED_EULER = 3;
+    public static final int MAX_IMPLEMENTED_EULER = 4;
 
     /**
      * Euler #1
@@ -88,6 +88,47 @@ public class Euler
             }
         }
         return -1;
+    }
+
+
+    /**
+     * Problem #4
+     * Answer: 906609
+     *
+     * A palindromic number reads the same both ways. The largest
+     * palindrome made from the product of two 2-digit numbers is 9009 =
+     * 91 99.
+     *
+     * Find the largest palindrome made from the product of two 3-digit
+     * numbers.
+     */
+
+    public static String reverseString(String s)
+    {
+        if ((null == s) || (s.length() <= 1)) {
+            return s;
+        }
+        return new StringBuffer(s).reverse().toString();
+    }
+
+    public static boolean is_palindromic_number(int n)
+    {
+        String s = "" + n;
+        return s.equals(reverseString(s));
+    }
+
+    public static int euler4()
+    {
+        int result = 0;
+        for (int i=100; i<1000; i++) {
+            for (int j=0; j<1000; j++) {
+                int p = i * j;
+                if (p > result && is_palindromic_number(p)) {
+                    result = p;
+                }
+            }
+        }
+        return result;
     }
 
 
