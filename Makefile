@@ -1,4 +1,4 @@
-all: c-euler Euler.class
+all: c-euler Euler.class fortran-euler
 
 c-euler: euler.c
 	# -lgmp -I/opt/local/include -L/opt/local/lib
@@ -9,6 +9,9 @@ Euler.class: Euler.java
 
 run-java: Euler.class
 	java -classpath apfloat.jar:. Euler
+
+fortran-euler: euler.for
+	gfortran euler.for -o fortran-euler
 
 clean:
 	\rm -f c-euler
