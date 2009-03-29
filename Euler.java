@@ -1,4 +1,5 @@
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 
 public class Euler
 {
@@ -49,6 +50,35 @@ public class Euler
             b = c;
         }
         return n;
+    }
+
+    /**
+     * Euler #3:
+     * Answer: 6857
+     *
+     * The prime factors of 13195 are 5, 7, 13 and 29.
+     *
+     * What is the largest prime factor of the number 600851475143 ?
+     */
+    public static final boolean is_prime(int n) 
+    {
+        for (var i=2; i<Math.ceil(Math.sqrt(n)); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int euler3() {
+        final BigInteger target = BigInteger("600851475143");
+        // Sigh.  No sqrt for BigInteger.
+        for (int i=Math.ceil(Math.sqrt(target)); i>=2; i++) {
+            if (is_prime(i)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void show(int n)
