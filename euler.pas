@@ -123,7 +123,7 @@ program euler;
     *)
 
     (* ghetto *)
-    procedure swap(s : string; i : integer; j : integer);
+    procedure swap(var s : string; i : integer; j : integer);
     var 
         tmp : char;
     begin
@@ -138,8 +138,8 @@ program euler;
         len : integer;
     begin
         len := length(s);
-        for i := 0 to trunc(len/2.0) do
-            swap(s, i, len-i);
+        for i := 1 to trunc(len/2.0) do
+            swap(s, i, len + 1 - i);
         reverse := s;
     end;
 
@@ -160,8 +160,12 @@ program euler;
     begin
         for i := 100 to 999 do
             for j := 100 to 999 do
-                if (p > result) and is_palindromic_number(p) then
-                    euler4 := p;
+                begin;
+                    p := i * j;
+                    if (p > result) and is_palindromic_number(p) then
+                        result := p;
+                end;
+        euler4 := result;
     end;
 
 
