@@ -55,9 +55,37 @@
     (euler2-iter 1 1 0))
 
 
+;; Euler #3:
+;; Answer: 6857
+;;
+;; The prime factors of 13195 are 5, 7, 13 and 29.
+;;
+;; What is the largest prime factor of the number 600851475143 ?
+
+(defun prime?-acc (n x)
+    (if (or (< x 2) (= n 2))
+        't
+        (if (= 0 (mod n x))
+            nil
+            (prime?-acc n (- x 1)))))
+
+(defun prime? (n)
+    (prime?-acc n (ceiling (sqrt n))))
+
+(defun euler3-accumulate (factor n)
+    (if (and (= 0 (mod n factor)) (prime? factor))
+        factor
+        (euler3-accumulate (- factor 1) n)))
+
+(defun euler3 ()
+    (let ((x 600851475143))
+        (euler3-accumulate (ceiling (sqrt x)) x)))
+
+
 (defconstant *eulers*
     '(#'euler1 
-      #'euler2))
+      #'euler2
+      #'euler3))
 
 (defun main ()
    (if (> (length *posix-argv*) 1)
