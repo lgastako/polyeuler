@@ -82,10 +82,41 @@
         (euler3-accumulate (ceiling (sqrt x)) x)))
 
 
+;; Problem #4
+;; Answer: 906609
+;;
+;; A palindromic number reads the same both ways. The largest
+;; palindrome made from the product of two 2-digit numbers is 9009 =
+;; 91 99.
+;;
+;; Find the largest palindrome made from the product of two 3-digit
+;; numbers.
+
+(defun palindromic-number? (n)
+    (let ((s (write-to-string n)))
+        (string= s (reverse s))))
+
+(defun euler4-accumulate (x y acc)
+    (if (> y 999)
+        acc
+        (if (> x 999)
+            (euler4-accumulate 100 (+ 1 y) acc)
+            (let ((p (* x y)))
+                (euler4-accumulate (+ 1 x) y (if (and (> p acc) (palindromic-number? p))
+                                                  p
+                                                  acc))))))
+
+(defun euler4 ()
+    (euler4-accumulate 100 100 0))
+
+
+;; "Main"
+
 (defconstant *eulers*
     '(#'euler1 
       #'euler2
-      #'euler3))
+      #'euler3
+      #'euler4))
 
 (defun main ()
    (if (> (length *posix-argv*) 1)
