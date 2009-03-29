@@ -16,7 +16,7 @@ C (2) +cli
 Clojure (4+) -cli
 Erlang (7) -cli
 Java (2) +cli
-Javascript (2) +cli
+Javascript (4) +cli
 Common LISP (4) +partial cli
 Lua (7) +cli
 Pascal (4) -cli
