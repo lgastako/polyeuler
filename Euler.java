@@ -53,6 +53,7 @@ public class Euler
         return n;
     }
 
+
     /**
      * Euler #3:
      * Answer: 6857
@@ -62,7 +63,6 @@ public class Euler
      *
      * What is the largest prime factor of the number 600851475143 ?
      */
-
     public static final boolean is_prime(int n) 
     {
         double maxFactor = Math.ceil(Math.sqrt(n));

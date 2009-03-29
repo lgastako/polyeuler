@@ -17,6 +17,7 @@ C
 C Find the sum of all the multiples of 3 or 5 below 1000.
 
        FUNCTION EULER1 ()
+           INTEGER I
            EULER1 = 0
 
            DO I = 3, 999
@@ -42,6 +43,7 @@ C exceed four million.
        FUNCTION EULER2 ()
            INTEGER LAST
            INTEGER NEXT
+           INTEGER CUR
 
            EULER2 = 2
            LAST = 1
@@ -57,3 +59,22 @@ C exceed four million.
            END DO
            RETURN
        END
+
+
+C Euler #3:
+C Answer: 6857
+C
+C The prime factors of 13195 are 5, 7, 13 and 29.
+C
+C What is the largest prime factor of the number 600851475143 ?
+
+C Don't know how do deal with large number syet.
+C        FUNCTI ON EULER3()
+C            INTEGER I
+C            DO I = CEILING(SQRT(600851475143)), I>2
+C                IF (MODULO(600851475143, I) .EQ. 0 .AND. IS_PRIME(I)) THEN
+C                    EULER3 = I
+C                    RETURN
+C                END IF
+C            END DO
+C        END
