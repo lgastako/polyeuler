@@ -17,7 +17,7 @@ Clojure (4+) -cli
 Erlang (7) -cli
 Java (2) +cli
 Javascript (2) +cli
-Common LISP (2) +partial cli
+Common LISP (4) +partial cli
 Lua (7) +cli
 Pascal (4) -cli
 Perl (4) +cli
@@ -26,7 +26,7 @@ Ruby (4+) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 13 languages with 69+ (overlapping) solutions.
+That's 13 languages with 71+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
