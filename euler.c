@@ -79,7 +79,7 @@ int euler3() {
 
 
 /* Problem #4
- * Answer: 906609 (not working yet)
+ * Answer: 906609
  *
  * A palindromic number reads the same both ways. The largest
  * palindrome made from the product of two 2-digit numbers is 9009 =
@@ -129,6 +129,7 @@ int (*EULERS[])() = {
     euler1,
     euler2,
     euler3,
+    euler4,
     NULL
 };
 
