@@ -3,7 +3,7 @@
  * John Evans <john@jpevans.com>
  *
  * To invoke:
- * "js euler"
+ * "js euler.js"
  */
 
 
@@ -53,12 +53,79 @@ function euler2() {
 }
 
 
-EULERS = [euler1, euler2];
+// Euler #3:
+// Answer: 6857
+//
+// The prime factors of 13195 are 5, 7, 13 and 29.
+//
+// What is the largest prime factor of the number 600851475143 ?
+
+function is_prime(n) {
+    for (var i=Math.ceil(Math.sqrt(n)); i>2; i--) {
+        if (n % i == 0) {
+            return false
+        }
+    }
+    return true;
+}
+
+function euler3() {
+    const target = 600851475143;
+    for (var i=Math.ceil(Math.sqrt(target)); i>2; i--) {
+        if ((target % i == 0) && is_prime(i)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+// Problem #4
+// Answer: 906609
+//
+// A palindromic number reads the same both ways. The largest
+// palindrome made from the product of two 2-digit numbers is 9009 =
+// 91 99.
+//
+// Find the largest palindrome made from the product of two 3-digit
+// numbers.
+
+function reverse_string(s) {
+    return s.split("").reverse().join("");
+}
+
+function is_palindromic_number(n) {
+    var s = "" + n;
+    return s == reverse_string(s);
+}
+
+function euler4() {
+    var result = 0;
+    for (var i=100; i<1000; i++) {
+        for (var j=100; j<1000; j++) {
+            var p = i * j;
+            if (p > result && is_palindromic_number(p)) {
+                result = p;
+            }
+        }
+    }
+    return result;
+}
+
+
+// "Main"
+
+EULERS = [
+    euler1,
+    euler2,
+    euler3,
+    euler4
+];
 
 if (arguments.length > 0) {
     for (index in arguments) {
         var n = arguments[index]
-        print(n + ": " + EULERS[n]());
+        print(n + ": " + EULERS[n-1]());
     }
 } else {
     for (var i=0, len = EULERS.length; i<len; i++) {
