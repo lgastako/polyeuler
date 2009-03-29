@@ -1,9 +1,10 @@
 import java.lang.reflect.Method;
-import java.math.BigInteger;
+import org.apfloat.Apint;
+import org.apfloat.ApintMath;
 
 public class Euler
 {
-    public static final int MAX_IMPLEMENTED_EULER = 2;
+    public static final int MAX_IMPLEMENTED_EULER = 3;
 
     /**
      * Euler #1
@@ -55,14 +56,20 @@ public class Euler
     /**
      * Euler #3:
      * Answer: 6857
+     * Slow as balls, but ok whatever, it works.
      *
      * The prime factors of 13195 are 5, 7, 13 and 29.
      *
      * What is the largest prime factor of the number 600851475143 ?
      */
+
     public static final boolean is_prime(int n) 
     {
-        for (var i=2; i<Math.ceil(Math.sqrt(n)); i++) {
+        double maxFactor = Math.ceil(Math.sqrt(n));
+        if (n == 2) {
+            return true;
+        }
+        for (int i=2; i<=maxFactor; i++) {
             if (n % i == 0) {
                 return false;
             }
@@ -70,16 +77,23 @@ public class Euler
         return true;
     }
 
-    // public static int euler3() {
-    //     final BigInteger target = BigInteger("600851475143");
-    //     // Sigh.  No sqrt for BigInteger.
-    //     for (int i=Math.ceil(Math.sqrt(target)); i>=2; i++) {
-    //         if (is_prime(i)) {
-    //             return i;
-    //         }
-    //     }
-    //     return -1;
-    // }
+    public static int euler3() {
+        final Apint target = new Apint("600851475143");
+        final Apint APZERO = new Apint(0);
+        Apint[] xs = ApintMath.sqrt(target);
+        Apint maxFactor = xs[1].compareTo(APZERO) > 0 ? xs[0].add(new Apint("1")) : xs[0];
+        for (int i=maxFactor.intValue(); i>=2; i--) {
+            if (target.mod(new Apint(i)).compareTo(APZERO) == 0 && is_prime(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    /**************
+     * Main stuff *
+     **************/
 
     public static void show(int n)
         throws Exception {
