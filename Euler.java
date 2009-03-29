@@ -70,16 +70,16 @@ public class Euler
         return true;
     }
 
-    public static int euler3() {
-        final BigInteger target = BigInteger("600851475143");
-        // Sigh.  No sqrt for BigInteger.
-        for (int i=Math.ceil(Math.sqrt(target)); i>=2; i++) {
-            if (is_prime(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
+    // public static int euler3() {
+    //     final BigInteger target = BigInteger("600851475143");
+    //     // Sigh.  No sqrt for BigInteger.
+    //     for (int i=Math.ceil(Math.sqrt(target)); i>=2; i++) {
+    //         if (is_prime(i)) {
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
 
     public static void show(int n)
         throws Exception {
