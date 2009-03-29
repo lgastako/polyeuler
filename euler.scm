@@ -83,7 +83,7 @@
 (define (reverse-string s)
     (list->string (reverse (string->list s))))
 
-(define (is-palindromic-number n)
+(define (palindromic-number? n)
     (let ((s (number->string n)))
         (string=? s (reverse-string s))))
 
@@ -93,7 +93,7 @@
         (if (> x 999)
             (euler4-accumulate 100 (+ 1 y) acc)
             (let ((p (* x y)))
-                (euler4-accumulate (+ 1 x) y (if (and (> p acc) (is-palindromic-number p))
+                (euler4-accumulate (+ 1 x) y (if (and (> p acc) (palindromic-number? p))
                                                   p
                                                   acc))))))
 
