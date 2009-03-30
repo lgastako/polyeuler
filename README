@@ -15,7 +15,7 @@ in parens)):
 C (4) +cli
 Clojure (4+) -cli
 Erlang (7) -cli
-Fortran (2) -cli
+Fortran (3) -cli
 Java (4) +cli
 Javascript (4) +cli
 Common LISP (4) +partial cli
@@ -27,7 +27,7 @@ Ruby (4+) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 14 languages with 79+ (overlapping) solutions.
+That's 14 languages with 80+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
