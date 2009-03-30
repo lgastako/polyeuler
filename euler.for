@@ -3,11 +3,12 @@ C John Evans <john@jpevans.com>
 
        PROGRAM EULER
            IMPLICIT NONE
-           INTEGER:: EULER1, EULER2, EULER3
+           INTEGER:: EULER1, EULER2, EULER3, EULER4
 
            PRINT*, EULER1()
            PRINT*, EULER2()
            PRINT*, EULER3()
+           PRINT*, EULER4()
            STOP
        END
 
@@ -114,3 +115,55 @@ C What is the largest prime factor of the number 600851475143 ?
            EULER3 = -1
            RETURN
        END
+
+
+C Problem #4
+C Answer: 906609
+C
+C A palindromic number reads the same both ways. The largest
+C palindrome made from the product of two 2-digit numbers is 9009 =
+C 91 99.
+C
+C Find the largest palindrome made from the product of two 3-digit
+C numbers.
+
+C      SUBROUTINE BACKWRDS(STR)
+C      CHARACTER STR(10)
+C      CHARACTER N
+C 
+C      J = 10
+C      DO 100 K = 1,5
+C      N = STR(K)
+C      STR(K) = STR(J)
+C      STR(J) = N
+C      J = J - 1
+C 100  CONTINUE
+C      RETURN
+C      END
+
+      LOGICAL FUNCTION ISPAL(N)
+          IMPLICIT NONE
+          INTEGER :: N
+          CHARACTER :: S(32), R(32)
+          WRITE(S, '(I10)') N
+          R = BACKWARDS(S)
+          ISPAL = S .EQ. R
+          RETURN
+      END
+
+      INTEGER FUNCTION EULER4()
+           IMPLICIT NONE
+           INTEGER :: I, J, P, RESULT
+           LOGICAL ISPAL
+           RESULT = 0
+           DO I = 100, 999, 1
+               DO J = 100, 999, 1
+                   P = I * J
+                   IF ((P .GT. RESULT) .AND. (ISPAL(P))) THEN
+                       RESULT = P
+                   END IF
+               END DO
+           END DO
+           EULER4 = P
+           RETURN
+      END
