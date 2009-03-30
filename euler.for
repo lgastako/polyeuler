@@ -2,8 +2,12 @@ C Project Euler in Fortran
 C John Evans <john@jpevans.com>
 
        PROGRAM EULER
+           IMPLICIT NONE
+           INTEGER:: EULER1, EULER2, EULER3
+
            PRINT*, EULER1()
            PRINT*, EULER2()
+           PRINT*, EULER3()
            STOP
        END
 
@@ -16,8 +20,9 @@ C we get 3, 5, 6 and 9. The sum of these multiples is 23.
 C
 C Find the sum of all the multiples of 3 or 5 below 1000.
 
-       FUNCTION EULER1 ()
-           INTEGER I
+       INTEGER FUNCTION EULER1 ()
+           INTEGER :: I
+
            EULER1 = 0
 
            DO I = 3, 999
@@ -40,10 +45,9 @@ C
 C Find the sum of all the even-valued terms in the sequence which do not
 C exceed four million.
 
-       FUNCTION EULER2 ()
-           INTEGER LAST
-           INTEGER NEXT
-           INTEGER CUR
+       INTEGER FUNCTION EULER2 ()
+           IMPLICIT NONE
+           INTEGER :: LAST, NEXT, CUR
 
            EULER2 = 2
            LAST = 1
@@ -63,18 +67,50 @@ C exceed four million.
 
 C Euler #3:
 C Answer: 6857
+C Pretty damn slow for how awesome Fortran is supposed to be at numerical
+C work, but oh well.
 C
 C The prime factors of 13195 are 5, 7, 13 and 29.
 C
 C What is the largest prime factor of the number 600851475143 ?
 
-C Don't know how do deal with large number syet.
-C        FUNCTI ON EULER3()
-C            INTEGER I
-C            DO I = CEILING(SQRT(600851475143)), I>2
-C                IF (MODULO(600851475143, I) .EQ. 0 .AND. IS_PRIME(I)) THEN
-C                    EULER3 = I
-C                    RETURN
-C                END IF
-C            END DO
-C        END
+       LOGICAL FUNCTION ISPRM(N)
+            IMPLICIT NONE
+            INTEGER :: N, I
+            LOGICAL :: DONE
+
+            DONE = .FALSE.
+            I = CEILING(SQRT(REAL(N)))
+            ISPRM = .TRUE.
+
+            DO WHILE (.NOT. DONE)
+                IF (MODULO(N, I) .EQ. 0) THEN
+                    ISPRM = .FALSE.
+                    DONE = .TRUE.
+                END IF
+                I = I - 1
+                IF (I < 2) THEN
+                    DONE = .TRUE.
+                END IF
+            END DO
+            RETURN
+       END
+
+       INTEGER FUNCTION EULER3()
+           IMPLICIT NONE
+           INTEGER :: I, T, MAX_FACTOR
+           LOGICAL :: DIVIS, PRIME, ISPRM
+
+           T = 600851475143
+           MAX_FACTOR = CEILING(SQRT(REAL(T)))
+           DO I = MAX_FACTOR, 2, -1
+               DIVIS = MODULO(T, I) .EQ. 0
+               PRIME = ISPRM(I)
+               IF (DIVIS .AND. PRIME) THEN
+                   EULER3 = I
+                   RETURN
+               END IF
+           END DO
+           EULER3 = -1
+           RETURN
+       END

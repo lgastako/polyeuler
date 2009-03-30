@@ -11,7 +11,7 @@ run-java: Euler.class
 	java -classpath apfloat.jar:. Euler
 
 fortran-euler: euler.for
-	gfortran euler.for -o fortran-euler
+	gfortran -m64 -fdefault-integer-8 euler.for -o fortran-euler
 
 clean:
 	\rm -f c-euler
