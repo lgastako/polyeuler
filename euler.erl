@@ -1,6 +1,13 @@
+% Project Euler in Erlang.
+% John Evans <john@jpevans.com>
+
+% Notes to myself:
+% timer:tc(Module, Function, Arguments) -> {Time, Value}
+
 -module(euler).
 -export([euler1/0, euler2/0, euler3/0, euler4/0, euler5/0, euler6/0,
          euler7/0]).
+
 
 
 % Euler #1
@@ -122,22 +129,35 @@ euler4() -> e4search(999, 999, 0).
 % What is the smallest number that is evenly divisible by all of the
 % numbers from 1 to 20?
 
-divisible_by_all(_, []) -> true;
-divisible_by_all(N, PotentialDivisors) ->
-    [H|T] = PotentialDivisors,
-    case N rem H of
-        0 -> divisible_by_all(N, T);
-        _ -> false
-    end.
+% This took 6.8 minutes
+% divisible_by_all(_, []) -> true;
+% divisible_by_all(N, PotentialDivisors) ->
+%     [H|T] = PotentialDivisors,
+%     case N rem H of
+%         0 -> divisible_by_all(N, T);
+%         _ -> false
+%     end.
+% 
+% e5search(N) ->
+%     case divisible_by_all(N, [20,19,18,17,16,15,14,13,12,11]) of
+%         true -> N;
+%         _ -> e5search(N + 1)
+%     end.
+% 
+% euler5() -> e5search(2520).
 
-e5search(N) ->
-    case divisible_by_all(N, [20,19,18,17,16,15,14,13,12,11]) of
-        true -> N;
-        _ -> e5search(N + 1)
-    end.
+% This took even longer... 10 minutes? wtf
+lcm(A, B, N) when N rem A == 0, N rem B == 0 -> N;
+lcm(A, B, N) -> lcm(A, B, N+1).
 
-euler5() -> e5search(2520).
+lcm(A, B) -> lcm(A, B, 1).
 
+
+e5search(Acc, N) when N > 20 -> Acc;
+e5search(Acc, N) -> e5search(lcm(Acc, N), N+1).
+
+euler5() ->
+    e5search(lcm(1, 2), 2).
 
 % Problem #6
 % Answer: 25164150
