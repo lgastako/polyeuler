@@ -4,7 +4,7 @@ import org.apfloat.ApintMath;
 
 public class Euler
 {
-    public static final int MAX_IMPLEMENTED_EULER = 4;
+    public static final int MAX_IMPLEMENTED_EULER = 5;
 
     /**
      * Euler #1
@@ -127,6 +127,34 @@ public class Euler
                     result = p;
                 }
             }
+        }
+        return result;
+    }
+
+
+    /**
+     * Problem #5
+     * Answer: 232792560
+     *
+     * 2520 is the smallest number that can be divided by each of the
+     * numbers from 1 to 10 without any remainder.
+     *
+     * What is the smallest number that is evenly divisible by all of the
+     * numbers from 1 to 20?
+     */
+    public static int lcm(int a, int b)
+    {
+        for (int i=1;; i++) {
+            if ((i % a == 0) && (i % b == 0)) {
+                return i;
+            }
+        }
+    }
+
+    public static int euler5() {
+        int result = lcm(1, 2);
+        for (int i=2; i<=20; i++) {
+            result = lcm(result, i);
         }
         return result;
     }
