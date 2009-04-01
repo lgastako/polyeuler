@@ -12,7 +12,7 @@ CURRENT SOLUTIONS
 (Languages with at least one solution implemented (number of solutions
 in parens)):
 
-C (4) +cli
+C (5) +cli
 Clojure (4+) -cli
 Erlang (7) -cli
 Fortran (3) -cli
@@ -27,7 +27,7 @@ Ruby (4+) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 14 languages with 80+ (overlapping) solutions.
+That's 14 languages with 81+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
