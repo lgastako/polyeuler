@@ -130,14 +130,14 @@ int euler4() {
  * is evenly divisible by all of the numbers from 1 to 20?
  */
 
-int lcm(int a,int b)
+int lcm(int a, int b)
 {
-  int n;
-  for(n=1;;n++)
-  {
-	if(n%a == 0 && n%b == 0)
-	  return n;
-  }
+    int n;
+    for(n=1;; n++) {
+        if(n % a == 0 && n % b == 0) {
+            return n;
+        }
+    }
 }
 
 int euler5() {
