@@ -78,7 +78,7 @@ int euler3() {
 }
 
 
-/* Problem #4
+/* Euler #4
  * Answer: 906609
  *
  * A palindromic number reads the same both ways. The largest
@@ -122,6 +122,35 @@ int euler4() {
 }
 
 
+/* Euler #5
+ * Answer: 232792560
+ *
+ * 2520 is the smallest number that can be divided by each of the numbers
+ * from 1 to 10 without any remainder. What is the smallest number that
+ * is evenly divisible by all of the numbers from 1 to 20?
+ */
+
+int lcm(int a,int b)
+{
+  int n;
+  for(n=1;;n++)
+  {
+	if(n%a == 0 && n%b == 0)
+	  return n;
+  }
+}
+
+int euler5() {
+    int i;
+    int result = lcm(1,2);
+
+    for (i=2; i<20; i++) {
+        result = lcm(result, i);
+    }
+    return result;
+}
+
+
 /* An array of the euler functions to make main easy.
  * I wonder if there's a way to eval e.g. ("euler%d", index) instead.
  */
@@ -130,6 +159,7 @@ int (*EULERS[])() = {
     euler2,
     euler3,
     euler4,
+    euler5,
     NULL
 };
 
