@@ -14,10 +14,10 @@ fortran-euler: euler.for
 	gfortran -m64 -fdefault-integer-8 euler.for -o fortran-euler
 
 ScalaEuler.class: ScalaEuler.scala
-	/opt/local/scala/bin/scalac -deprecation ScalaEuler.scala
+	/opt/local/scala/bin/scalac -deprecation -classpath apfloat.jar ScalaEuler.scala
 
 run-scala: ScalaEuler.class
-	/opt/local/scala/bin/scala ScalaEuler
+	/opt/local/scala/bin/scala -classpath apfloat.jar:. ScalaEuler
 
 clean:
 	\rm -f c-euler

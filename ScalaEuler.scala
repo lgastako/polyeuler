@@ -1,3 +1,6 @@
+import org.apfloat.Apint
+import org.apfloat.ApintMath
+
 object ScalaEuler {
     // Really? not built in?
     def inject(arr: Collection[Int], initial: Int, operation: (Int, Int) => Int) : Int = {
@@ -38,9 +41,45 @@ object ScalaEuler {
 
     def euler2():Int = e2search(1, 2, 0)
 
+    /**
+     * Euler #3:
+     * Answer: 6857
+     *
+     * The prime factors of 13195 are 5, 7, 13 and 29.
+     *
+     * What is the largest prime factor of the number 600851475143 ?
+     */
+    def is_prime(n: Int):Boolean = {
+        if (n != 2) {
+            val maxFactor = Math.ceil(Math.sqrt(n)).toInt
+            var start:Double = 2
+            for (i <- 2 to maxFactor) {
+                if (n % i == 0) {
+                    return false
+                }
+            }
+        }
+        true
+    }
+
+    def euler3():Int = {
+        val TARGET = new Apint("600851475143")
+        val APZERO = new Apint(0)
+
+        val xs = ApintMath.sqrt(TARGET)
+        val (integer_portion, fractional_portion) = (xs(0), xs(1)) // There's gotta be a way to combine this with the line above in one shot
+        val maxFactor = if (fractional_portion.compareTo(APZERO) > 0) integer_portion.add(new Apint("1")) else integer_portion
+        for (i <- maxFactor.intValue() to 2) {
+            if (TARGET.mod(new Apint(i)).compareTo(APZERO) == 0 && is_prime(i)) {
+                return i
+            }
+        }
+        -1
+    }
+
     /** "Main" stuff **/
 
-    val eulers = List(euler1, euler2)
+    val eulers = List(euler1, euler2, euler3)
 
     def show_results(prob_number:Int, result:Int):Unit = println("#" + prob_number + ": " + result)
 
