@@ -24,6 +24,7 @@ Pascal (4) -cli
 Perl (4) +cli
 Python (4) + cli
 Ruby (4+) +cli
+Scala (1) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
@@ -32,7 +33,6 @@ That's 14 languages with 82+ (overlapping) solutions.
 
 Missing languages that I would like to (and probably will) add:
 ===============================================================
-Scala
 OCaml
 Objective-C
 Prolog
