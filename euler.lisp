@@ -158,6 +158,39 @@
         (- (square (sum-xs xs))
            (sum-xs (mapcar #'square xs)))))
 
+;; Problem #7
+;; Answer: 104743
+;;
+;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+;;
+;; What is the 10001st prime number?
+
+(defun divisible-by-any? (xs n)
+    (if xs
+        (if (= (rem n (car xs)) 0)
+            't
+            (divisible-by-any? (cdr xs) n))
+        nil))
+
+(defun next-prime-accumulate (primes n)
+    (if (divisible-by-any? primes n)
+        (next-prime-accumulate primes (+ 1 n))
+        n))
+
+(defun next-prime (primes)
+    (next-prime-accumulate primes (+ 1 (car primes))))
+
+(defun nth-prime (n primes)
+    (let ((len (length primes)))
+        (if (= len n)
+            (car primes)
+            (if (> len n)
+                (nth-prime n (cdr primes))
+                (nth-prime n (cons (next-prime primes) primes))))))
+
+(defun euler7 ()
+    (nth-prime 10001 '(2)))
+
 
 ;; "Main"
 
@@ -166,7 +199,9 @@
       #'euler2
       #'euler3
       #'euler4
-      #'euler5))
+      #'euler5
+      #'euler6
+      #'euler7))
 
 (defun main ()
    (if (> (length *posix-argv*) 1)
@@ -177,4 +212,4 @@
            ; I feel like the eval shouldn't be necessary...
            (print (funcall (eval euler))))))
 
-(main)
+;; (main)
