@@ -133,7 +133,7 @@ int euler4() {
 int lcm(int a, int b)
 {
     int n;
-    for(n=1;; n++) {
+    for (n=1;; n++) {
         if(n % a == 0 && n % b == 0) {
             return n;
         }
@@ -141,13 +141,35 @@ int lcm(int a, int b)
 }
 
 int euler5() {
-    int i;
-    int result = lcm(1,2);
+    int i, result = lcm(1,2);
 
     for (i=2; i<20; i++) {
         result = lcm(result, i);
     }
     return result;
+}
+
+
+/* Problem #6
+ * Answer: 25164150
+ *
+ * The sum of the squares of the first ten natural numbers is,
+ *     1² + 2² + ... + 10² = 385
+ * The square of the sum of the first ten natural numbers is,
+ *     (1 + 2 + ... + 10)² = 55² = 3025
+ * Hence the difference between the sum of the squares of the first
+ * ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+ *
+ * Find the difference between the sum of the squares of the first one
+ * hundred natural numbers and the square of the sum.
+ */
+int euler6() {
+    int i, sum = 0, sum_of_squares = 0;
+    for (i=0; i<=100; i++) {
+        sum_of_squares += i*i;
+        sum += i;
+    }
+    return (sum * sum) - sum_of_squares;
 }
 
 
@@ -160,6 +182,7 @@ int (*EULERS[])() = {
     euler3,
     euler4,
     euler5,
+    euler6,
     NULL
 };
 
