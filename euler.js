@@ -112,6 +112,33 @@ function euler4() {
     return result;
 }
 
+// Problem #5
+// Answer: 232792560
+//
+// 2520 is the smallest number that can be divided by each of the
+// numbers from 1 to 10 without any remainder.
+//
+// What is the smallest number that is evenly divisible by all of the
+// numbers from 1 to 20?
+
+function lcm(a, b)
+{
+    for (var i=1;; i++) {
+        if ((i % a == 0) && (i % b == 0)) {
+            return i;
+        }
+    }
+}
+
+function euler5() {
+    var result = lcm(1, 2);
+    for (var i=2; i<=20; i++) {
+        result = lcm(result, i);
+    }
+    return result;
+}
+
+
 
 // "Main"
 
@@ -119,7 +146,8 @@ EULERS = [
     euler1,
     euler2,
     euler3,
-    euler4
+    euler4,
+    euler5,
 ];
 
 if (arguments.length > 0) {
