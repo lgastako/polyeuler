@@ -114,6 +114,7 @@ function euler4() {
 
 // Problem #5
 // Answer: 232792560
+// Slow: 3m18s.
 //
 // 2520 is the smallest number that can be divided by each of the
 // numbers from 1 to 10 without any remainder.
@@ -153,15 +154,44 @@ function euler5() {
 // hundred natural numbers and the square of the sum.
 
 function euler6() {
-    sum = 0
-    sum_sq = 0
+    var sum = 0;
+    var sum_sq = 0;
     for (var i=1; i<=100; i++) {
         sum = sum + i;
         sum_sq = sum_sq + (i * i);
     }
-    return (sum * sum) - sum_sq
+    return (sum * sum) - sum_sq;
 }
 
+
+// Problem #7
+// Answer: 104743
+//
+// By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+//
+// What is the 10001st prime number?
+
+function euler7() {
+    var n = 2;
+    var primes = [];
+    for (;;) {
+        var is_prime = true;
+        for (var i=0; i<primes.length; i++) {
+            var v = primes[i];
+            if (n % v == 0) {
+                is_prime = false;
+                break
+            }
+        }
+        if (is_prime) {
+            if (primes.length >= 10000) {
+                return n;
+            }
+            primes.push(n);
+        }
+        n = n + 1;
+    }
+}
 
 
 // "Main"
@@ -173,6 +203,7 @@ EULERS = [
     euler4,
     euler5,
     euler6,
+    euler7,
 ];
 
 if (arguments.length > 0) {
