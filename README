@@ -38,26 +38,29 @@ Objective-C
 Prolog
 
 
-Maybe some day:
-===============
-Basic
-C#
-Logo
-Mathematica
-R
+Maybe some day, (roughly) in order of preference:
+=================================================
+Fan
 Oz
-PHP? Maybe not, just on principal.
-Postscript
-SQL?
+R
+Mathematica
+Smalltalk
+C#
+Rebol
+Basic
 Maude
-Brainfuck
-Whitespace
+Logo
+Rexx
+TCL
+SQL?
 unix shells (bash / ksh / csh / tcsh / zsh)
 other misc unixy things (awk, sed, etc)
-TCL
-Rexx
-Rebol
-Smalltalk
+PHP? Maybe not, just on principal.
+Postscript
+Brainfuck
+Whitespace
+
+
 
 -
 John Evans
