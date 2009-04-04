@@ -31,13 +31,13 @@ Lua (7) +cli
 OCaml (2) -cli
 Pascal (4) -cli
 Perl (6) +cli
-Python (6) + cli
+Python (7) + cli
 Ruby (7+) +cli
 Scala (2) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 16 languages with 100+ (overlapping) solutions.
+That's 16 languages with 101+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:

@@ -124,24 +124,52 @@ def euler5():
 
 
 def euler6():
-  """Problem #6
-  Answer: 25164150
+    """Problem #6
+    Answer: 25164150
 
-  The sum of the squares of the first ten natural numbers is,
+    The sum of the squares of the first ten natural numbers is,
       1² + 2² + ... + 10² = 385
-  The square of the sum of the first ten natural numbers is,
+    The square of the sum of the first ten natural numbers is,
       (1 + 2 + ... + 10)² = 55² = 3025
-  Hence the difference between the sum of the squares of the first
-  ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+    Hence the difference between the sum of the squares of the first
+    ten natural numbers and the square of the sum is 3025 - 385 = 2640.
 
-  Find the difference between the sum of the squares of the first one
-  hundred natural numbers and the square of the sum.
+    Find the difference between the sum of the squares of the first one
+    hundred natural numbers and the square of the sum.
 
-  """
+    """
 
-  r = range(1, 101)
-  s = sum(r)
-  return (s * s) - sum([(i * i) for i in r])
+    r = range(1, 101)
+    s = sum(r)
+    return (s * s) - sum([(i * i) for i in r])
+
+
+def euler7():
+    """Problem #7
+    Answer: 104743
+
+    By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+
+    What is the 10001st prime number?
+
+    """
+
+    n = 2
+    primes = [2]
+    result = 0
+    while True:
+        is_prime = True
+        for prime in primes:
+            if n % prime == 0:
+                is_prime = False
+                break
+        else:
+            if len(primes) >= 10000:
+                result = n
+                break
+            primes.append(n)
+        n += 1
+    return result
 
 
 EULERS = [
