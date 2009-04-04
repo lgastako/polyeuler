@@ -6,6 +6,14 @@ answers to each of the euler problems in order, or, if invoked with arguments
 treats the arguments as problem numbers and prints the answer to the
 appropriate problems.
 
+I also plan at some point (probably once I have gotten the CLI done for 
+each of the languages I'm using) to also implement printing of timing
+information in the output of each result and then optimize each solution
+to be quick (a few seconds or less whenever possible and under a minute
+for all cases).  During this optimization phase I am also planning on
+trying to implement more idiomatic (relative to the implementation language)
+solutions where I have not already done so.
+
 
 CURRENT SOLUTIONS
 =================
@@ -24,12 +32,12 @@ OCaml (2) -cli
 Pascal (4) -cli
 Perl (6) +cli
 Python (6) + cli
-Ruby (4+) +cli
+Ruby (7+) +cli
 Scala (2) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 16 languages with 97+ (overlapping) solutions.
+That's 16 languages with 100+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
@@ -49,10 +57,11 @@ F#
 io
 Forth
 C#
+J
 Rebol
-Basic
 Maude
 Logo
+Basic
 Rexx
 TCL
 SQL?

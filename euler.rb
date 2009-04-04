@@ -3,6 +3,7 @@
 # Project Euler in Ruby (1.8.5)
 # John Evans <john@jpevans.com>
 
+require 'rational'
 
 # Euler #1
 # Answer: 233168
@@ -105,12 +106,76 @@ def euler4
 end
 
 
-EULERS = [
-    euler1,
-    euler2,
-    euler3,
-    euler4
-]
+# Problem #5
+# Answer: 232792560
+#
+# 2520 is the smallest number that can be divided by each of the
+# numbers from 1 to 10 without any remainder.
+#
+# What is the smallest number that is evenly divisible by all of the
+# numbers from 1 to 20?
+
+def euler5
+    (1..20).inject(1) { |result, n| result.lcm n }
+end
+
+
+# Problem #6
+# Answer: 25164150
+#
+# The sum of the squares of the first ten natural numbers is,
+#     1² + 2² + ... + 10² = 385
+# The square of the sum of the first ten natural numbers is,
+#     (1 + 2 + ... + 10)² = 55² = 3025
+# Hence the difference between the sum of the squares of the first
+# ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+#
+# Find the difference between the sum of the squares of the first one
+# hundred natural numbers and the square of the sum.
+
+def euler6
+    sum = sum_of_squares = 0
+    1.upto(100) do |n|
+        sum += n
+        sum_of_squares += n * n
+    end
+    (sum * sum) - sum_of_squares
+end
+
+
+# Problem #7
+# Answer: 104743
+#
+# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+#
+# What is the 10001st prime number?
+
+def euler7
+    n = 2
+    primes = []
+    result = 0
+    while true do
+        is_prime = true
+        primes.each do |v|
+            if n % v == 0 then
+                is_prime = false
+                break
+            end
+        end
+        if is_prime then
+            if primes.length >= 10000 then
+                result = n
+                break
+            end
+            primes.push(n)
+        end
+        n = n + 1
+    end
+    result
+end
+
+
+MAX_EULER = 7
 
 
 if __FILE__ == $0
@@ -119,8 +184,8 @@ if __FILE__ == $0
             puts "#{arg}: #{eval("euler#{arg}")}"
         end
     else
-        EULERS.each_with_index do |euler, index|
-            puts "#{index+1}: #{euler}"
+        1.upto(MAX_EULER) do |n|
+            puts "#{n}: #{eval("euler#{n}")}"
         end
     end
 end
