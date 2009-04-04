@@ -129,12 +129,51 @@ sub euler4
 }
 
 
+# Problem #5
+# Answer: 232792560
+#
+# 2520 is the smallest number that can be divided by each of the
+# numbers from 1 to 10 without any remainder.
+#
+# What is the smallest number that is evenly divisible by all of the
+# numbers from 1 to 20?
+
+sub divisible_by_all
+{
+    my ($d, $n, @ds, $result);
+    $n = shift @_;
+    @ds = @_;
+    $result = 1;
+    foreach $d (@ds) {
+        if ($n % $d != 0) {
+            $result = 0;
+            last;
+        }
+    }
+    $result;
+}
+
+sub euler5 
+{
+    my $n = 2520;
+    my @ds = (20, 19, 18, 17, 16, 15, 14, 13, 12, 11);
+    for (;;) {
+        if (divisible_by_all($n, @ds)) {
+            return $n;
+        }
+        $n++;
+    }
+}
+
+
+
 sub main {
     my @EULERS = (
         \&euler1,
         \&euler2,
         \&euler3,
-        \&euler4
+        \&euler4,
+        \&euler5,
     );
 
     if (@ARGV) {

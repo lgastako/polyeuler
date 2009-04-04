@@ -22,7 +22,7 @@ Common LISP (7) +partial cli
 Lua (7) +cli
 OCaml (2) -cli
 Pascal (4) -cli
-Perl (4) +cli
+Perl (5) +cli
 Python (4) + cli
 Ruby (4+) +cli
 Scala (2) +cli
