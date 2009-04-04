@@ -1,10 +1,13 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # Project Euler in Python (2.5)
 # John Evans <john@jpevans.com>
 
+
 import sys
 import math
+
 
 def euler1():
     """Euler #1
@@ -92,11 +95,64 @@ def euler4():
     return r
 
 
+def divisible_by_all(n, ds):
+    for d in ds:
+        if n % d != 0:
+            return False
+    return True
+
+
+def euler5():
+    """Problem #5
+    Answer: 232792560
+
+    2520 is the smallest number that can be divided by each of the
+    numbers from 1 to 10 without any remainder.
+
+    What is the smallest number that is evenly divisible by all of the
+    numbers from 1 to 20?
+
+    """
+
+    r = [2, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11]
+
+    # r = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11]
+
+    i = 2520
+    while True:
+        if divisible_by_all(i, r):
+            return i
+        i += 1
+
+
+def euler6():
+  """Problem #6
+  Answer: 25164150
+
+  The sum of the squares of the first ten natural numbers is,
+      1² + 2² + ... + 10² = 385
+  The square of the sum of the first ten natural numbers is,
+      (1 + 2 + ... + 10)² = 55² = 3025
+  Hence the difference between the sum of the squares of the first
+  ten natural numbers and the square of the sum is 3025 - 385 = 2640.
+
+  Find the difference between the sum of the squares of the first one
+  hundred natural numbers and the square of the sum.
+
+  """
+
+  r = range(1, 101)
+  s = sum(r)
+  return (s * s) - sum([(i * i) for i in r])
+
+
 EULERS = [
     euler1,
     euler2,
     euler3,
-    euler4
+    euler4,
+    euler5,
+    euler6,
 ]
 
 
