@@ -14,6 +14,13 @@ for all cases).  During this optimization phase I am also planning on
 trying to implement more idiomatic (relative to the implementation language)
 solutions where I have not already done so.
 
+NOTE: I am doing this for autodidactic purposes, and therefore am not
+interested in pulling changes from other people, however, people are welcome
+to fork this project and do whatever they like with it.  Dustin J. Mitchell
+has created one fork that specifically encourages people to pitch in, here:
+
+http://github.com/djmitche/polyeuler/tree/master
+
 
 CURRENT SOLUTIONS
 =================
@@ -49,7 +56,6 @@ Prolog
 Maybe some day, (roughly) in order of preference:
 =================================================
 Fan
-Clean
 Oz
 R
 Mathematica
@@ -60,6 +66,7 @@ io
 Forth
 C#
 J
+Clean
 Rebol
 Maude
 Logo
