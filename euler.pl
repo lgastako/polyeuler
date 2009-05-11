@@ -192,6 +192,31 @@ sub euler6
 }
 
 
+# Problem #7
+# Answer: 104743
+#
+# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+#
+# What is the 10001st prime number?
+
+# sub euler7 {
+#     my @primes = (2);
+#     my $i, $j;
+#     for (;;) {
+#         if ($#primes == 10001) {
+#             return @primes[$#primes - 1];
+#         }
+#         my $next_prime = 0;
+#         for ($i = @primes[$#primes - 1]; ;$i++) {
+#             foreach $prime (@primes) {
+#                 if ($i )
+#             }
+#             
+#         }
+#     }
+# }
+
+
 sub main {
     my @EULERS = (
         \&euler1,
