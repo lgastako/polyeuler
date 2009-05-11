@@ -31,6 +31,7 @@ C (6) +cli
 Clojure (4+) -cli
 Erlang (7) -cli
 Fortran (3) -cli
+Fan (1) +cli
 Java (5) +cli
 Javascript (7) +cli
 Common LISP (7) +partial cli
@@ -44,7 +45,7 @@ Scala (2) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 16 languages with 101+ (overlapping) solutions.
+That's 17 languages with 102+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
@@ -55,7 +56,6 @@ Prolog
 
 Maybe some day, (roughly) in order of preference:
 =================================================
-Fan
 Oz
 R
 Mathematica
