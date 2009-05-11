@@ -1,4 +1,4 @@
-all: c-euler Euler.class fortran-euler
+all: c-euler Euler.class fortran-euler niceeuler.jar
 
 c-euler: euler.c
 	# -lgmp -I/opt/local/include -L/opt/local/lib
@@ -18,6 +18,9 @@ ScalaEuler.class: ScalaEuler.scala
 
 run-scala: ScalaEuler.class
 	/opt/local/scala/bin/scala -classpath apfloat.jar:. ScalaEuler
+
+niceeuler.jar: nice/euler/euler.nice
+    nicec --sourcepath=nice -a niceeuler.jar euler
 
 clean:
 	\rm -f c-euler
