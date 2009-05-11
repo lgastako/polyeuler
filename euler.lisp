@@ -158,6 +158,7 @@
         (- (square (sum-xs xs))
            (sum-xs (mapcar #'square xs)))))
 
+
 ;; Problem #7
 ;; Answer: 104743
 ;;
