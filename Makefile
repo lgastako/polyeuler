@@ -20,7 +20,10 @@ run-scala: ScalaEuler.class
 	/opt/local/scala/bin/scala -classpath apfloat.jar:. ScalaEuler
 
 niceeuler.jar: nice/euler/euler.nice
-    nicec --sourcepath=nice -a niceeuler.jar euler
+	nicec --sourcepath=nice -a niceeuler.jar euler
+
+run-nice: niceeuler.jar
+	java -jar niceeuler.jar
 
 clean:
-	\rm -f c-euler
+	\rm -f c-euler niceeuler.jar
