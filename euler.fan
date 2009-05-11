@@ -49,6 +49,37 @@ class Euler
         return n
     }
 
+    /**
+     * Problem #4
+     * Answer: 906609
+     *
+     * A palindromic number reads the same both ways. The largest
+     * palindrome made from the product of two 2-digit numbers is 9009 =
+     * 91 99.
+     *
+     * Find the largest palindrome made from the product of two 3-digit
+     * numbers.
+     */
+    static Bool is_palindromic_number(Int n)
+    {
+        s := "$n"
+        return s == s.reverse()
+    }
+
+    static Int euler4()
+    {
+        result := 0
+        (100..<1000).each |i| {
+            (0..<1000).each |j| {
+                p := i * j
+                if (p > result && Euler.is_palindromic_number(p)) {
+                    result = p
+                }
+            }
+        }
+        return result
+    }
+
 
     static Void main(Str[] args) {
         // Kinda lame that we need an instance just to use trap for
