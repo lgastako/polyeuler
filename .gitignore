@@ -1,4 +1,9 @@
 c-euler
+ocaml-euler
 fortran-euler
 niceeuler.jar
 nice/euler/package.nicei
+*.cmi
+*.cmo
+*.cmx
+*.o

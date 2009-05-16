@@ -142,3 +142,12 @@ let e4search i j acc =
 let euler4 =
     e4search 1 1 0
     ;; *)
+
+
+let main () =
+    print_int euler1;
+    print_char '\n';
+    print_int euler2;
+    print_char '\n';;
+
+main ();;
