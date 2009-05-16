@@ -25,5 +25,8 @@ niceeuler.jar: nice/euler/euler.nice
 run-nice: niceeuler.jar
 	java -jar niceeuler.jar
 
+ocaml-euler: euler.ml
+	ocamlopt euler.ml -o ocaml-euler
+
 clean:
-	\rm -f c-euler niceeuler.jar
+	\rm -f c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o}
