@@ -194,24 +194,24 @@
 ;; Problem 7
 ;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 ;; What is the 10001st prime number?
-;
-;(defn find-nth-prime 
-;    ([nth] (find-nth-prime nth 2 0))
-;    ([nth n count]
-;        (if (prime? n)
-;            (let [current (+ count 1)]
-;                (if (= nth current)
-;                    n
-;                    (recur nth (+ n 1) current)))
-;            (recur nth (+ n 1) count))))
-;
-;(assert (= (find-nth-prime 6) 13))
-;
-;(defn euler7 []
-;    (find-nth-prime 10001))
-;
-;(assert (= 104743 (euler7)))
-;
+
+(defn find-nth-prime 
+    ([nth] (find-nth-prime nth 2 0))
+    ([nth n count]
+        (if (prime? n)
+            (let [current (+ count 1)]
+                (if (= nth current)
+                    n
+                    (recur nth (+ n 1) current)))
+            (recur nth (+ n 1) count))))
+
+(assert (= (find-nth-prime 6) 13))
+
+(defn euler7 []
+    (find-nth-prime 10001))
+
+(assert (= 104743 (euler7)))
+
 ;; Problem 8
 ;; Find the greatest product of five consecutive digits in the 1000-digit number.
 ;(def prob8-data (str "73167176531330624919225119674426574742355349194934"
