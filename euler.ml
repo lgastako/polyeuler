@@ -24,7 +24,7 @@ let divisible_by_3_or_5 n =
     (n mod 3 == 0) || (n mod 5 == 0)
     ;;
 
-let euler1 =
+let euler1 = fun() ->
     sum_list (List.filter divisible_by_3_or_5 (range 3 999))
     ;;
 
@@ -46,7 +46,7 @@ let rec e2search a b acc =
     else e2search b (a + b) (if b mod 2 == 0 then acc + b else acc)
     ;;
 
-let euler2 = 
+let euler2 = fun() ->
     e2search 1 2 0
     ;;
 
@@ -144,10 +144,32 @@ let euler4 =
     ;; *)
 
 
+let eulers = [|euler1, euler2|];;
+let print_euler n =
+    print_char '#';
+    print_int n;
+    print_string ": ";
+    let euler = eulers.(n) in
+    print_int euler
+;;
+
 let main () =
-    print_int euler1;
-    print_char '\n';
-    print_int euler2;
-    print_char '\n';;
+    let num_args = Array.length Sys.argv in
+    if num_args > 0 then
+       for i = 1 to num_args - 1 do
+           print_euler int_of_string Sys.argv.(i)
+       done
+    else
+        for i = 0 to Array.length eulers do
+            print_int eulers.(i)
+        done
+    ;;
+
+(*         if Sys.arg
+        let print_all =
+        print_int euler1;
+        print_char '\n';
+        print_int euler2;
+        print_char '\n';; *)
 
 main ();;

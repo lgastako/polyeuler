@@ -147,27 +147,28 @@
 (assert (= 906609 (euler4)))
 
 ;; Problem 5
-;; 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+;; 2520 is the smallest number that can be divided by each of the
+;; numbers from 1 to 10 without any remainder.
 ;; What is the smallest number that is evenly divisible by all of the numbers from 1 to 20?
 ;
-;(defn divisible-by-all? [n fs]
-;    (every? #(factor? n %) fs))
-;
-;(defn find-divisible-by-all 
-;    ([min max] (find-divisible-by-all min max max))
-;    ([min max n]
-;        (if (divisible-by-all? n (range min max))
-;            n
-;            (recur min max (+ n 1)))))
-;
-;(assert (= (find-divisible-by-all 1 10) 2520))
-;
-;(defn euler5 []
-;    (find-divisible-by-all 1 20))
-;
-;(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
-;
-;
+(defn divisible-by-all? [n fs]
+    (every? #(factor? n %) fs))
+
+(defn find-divisible-by-all 
+    ([min max] (find-divisible-by-all min max max))
+    ([min max n]
+        (if (divisible-by-all? n (range min max))
+            n
+            (recur min max (+ n 1)))))
+
+(assert (= (find-divisible-by-all 1 10) 2520))
+
+(defn euler5 []
+    (find-divisible-by-all 1 20))
+
+(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
+
+
 ;; Problem 6
 ;; The sum of the squares of the first ten natural numbers is,
 ;; 12 + 22 + ... + 102 = 385
@@ -176,20 +177,20 @@
 ;; Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025  385 = 2640.
 ;; 
 ;; Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
-;
-;(defn sum-of-squares [ns]
-;    (apply + (map square ns)))
-;
-;(defn square-of-sum [ns]
-;    (square (apply + ns)))
-;
-;(defn euler6 []
-;    (let [r (range 1 101)]
-;        (- (square-of-sum r) (sum-of-squares r))))
-;
-;(assert (= 25164150 (euler6)))
-;
-;
+
+(defn sum-of-squares [ns]
+    (apply + (map square ns)))
+
+(defn square-of-sum [ns]
+    (square (apply + ns)))
+
+(defn euler6 []
+    (let [r (range 1 101)]
+        (- (square-of-sum r) (sum-of-squares r))))
+
+(assert (= 25164150 (euler6)))
+
+
 ;; Problem 7
 ;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 ;; What is the 10001st prime number?
