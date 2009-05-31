@@ -365,11 +365,25 @@
       r
       (recur (* n r) n (dec p)))))
 
+(defn sum-digits [n]
+  (sum (map #(Character/digit % 10) (str n))))
+
 (defn euler16 []
-  (sum
-   (map #(Character/digit % 10)
-        (str (expt 2 1000)))))
+  (sum-digits (expt 2 1000)))
+
+
+;; Problem 20
+;; n! means n  (n * 1)  ...  3 * 2 * 1
+;; Find the sum of the digits in the number 100!
+
+(defn fac [n] 
+  (apply * (range 2 (inc n))))
+
+(defn euler20 []
+  (sum-digits (fac 100)))
+
 
 ;; TODO: use with-command-line-args to do some stuff.
+
 
 
