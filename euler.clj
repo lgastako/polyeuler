@@ -350,10 +350,13 @@
 ;;(defn euler11 []
 ;;  (find-lowest-triangle-number-with-more-than-n-divisors 500))
 
-;; Problem 12
+;; Problem 16
 ;; Answer: 1366
 ;; 2^(15) = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 ;; What is the sum of the digits of the number 2^(1000)?
+
+(defn sum [xs]
+  (apply + xs))
 
 (defn expt
   ([n p] (expt n n p))
@@ -362,8 +365,8 @@
       r
       (recur (* n r) n (dec p)))))
 
-(defn euler12 []
-  (apply +
+(defn euler16 []
+  (sum
    (map #(Character/digit % 10)
         (str (expt 2 1000)))))
 
