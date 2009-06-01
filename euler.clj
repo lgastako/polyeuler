@@ -3,7 +3,8 @@
 ; Utility functions used in multiple solutions
 
 (ns euler
-    (:use clojure.contrib.command-line))
+  (:use clojure.contrib.command-line)
+  (:use clojure.contrib.combinatorics))
 
 (defn sqrt [n] (. Math sqrt n))
 
@@ -373,6 +374,7 @@
 
 
 ;; Problem 20
+;; Answer: 648
 ;; n! means n  (n * 1)  ...  3 * 2 * 1
 ;; Find the sum of the digits in the number 100!
 
@@ -382,6 +384,15 @@
 (defn euler20 []
   (sum-digits (fac 100)))
 
+
+;; Problem #29
+;; Answer: 9183
+
+(defn euler29 []
+  (count
+   (distinct
+    (map #(apply expt %)
+         (cartesian-product (range 2 101) (range 2 101))))))
 
 ;; TODO: use with-command-line-args to do some stuff.
 
