@@ -47,12 +47,12 @@
             acc
             (recur ns (- max 1) (+ acc (if (multiple? ns max) max 0))))))
 
-(assert (= (sum-of-all-multiples [3 5] 9) 23))
+;;(assert (= (sum-of-all-multiples [3 5] 9) 23))
 
 (defn euler1 []
     (sum-of-all-multiples [3 5] 999))
 
-(assert (= 233168 (euler1)))
+;;(assert (= 233168 (euler1)))
 
 
 ; Alternate solution using lazy sequence + filter + anonymous functions, more clojure-thonic
@@ -63,7 +63,7 @@
                           (zero? (rem % 5)))
                      (range 1000))))
 
-(assert (= 233168 (euler1-alt)))
+;;(assert (= 233168 (euler1-alt)))
 
 
 ; Problem 2
@@ -79,7 +79,7 @@
 (defn euler2 []
     (sum-fib 1 2 4000000 0))
 
-(assert (=  4613732 (euler2)))
+;;(assert (=  4613732 (euler2)))
 
 
 ; Problem 3
@@ -102,12 +102,12 @@
             f
             (recur n (- f 1)))))
 
-(assert (= (largest-prime-factor 13195) 29))
+;;(assert (= (largest-prime-factor 13195) 29))
 
 (defn euler3 []
     (largest-prime-factor 600851475143))
 
-(assert (= 6857 (euler3)))
+;;(assert (= 6857 (euler3)))
 
 ; Problem 4
 ; Answer: 906609
@@ -140,12 +140,12 @@
                 (let [n (* x y)]
                     (recur num-digits x (- y 1) start (if (and (> n acc ) (palindrome? (str n))) n acc)))))))
 
-(assert (= (largest-palindromic-number 2)))
+;;(assert (= (largest-palindromic-number 2)))
 
 (defn euler4 []
     (largest-palindromic-number 3))
 
-(assert (= 906609 (euler4)))
+;;(assert (= 906609 (euler4)))
 
 ;; Problem 5
 ;; 2520 is the smallest number that can be divided by each of the
@@ -162,12 +162,12 @@
             n
             (recur min max (+ n 1)))))
 
-(assert (= (find-divisible-by-all 1 10) 2520))
+;;(assert (= (find-divisible-by-all 1 10) 2520))
 
 (defn euler5 []
     (find-divisible-by-all 1 20))
 
-(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
+;;(assert (= 232792560 (euler5))) ; Too Slow.  Pls fix.
 
 
 ;; Problem 6
@@ -189,7 +189,7 @@
     (let [r (range 1 101)]
         (- (square-of-sum r) (sum-of-squares r))))
 
-(assert (= 25164150 (euler6)))
+;;(assert (= 25164150 (euler6)))
 
 
 ;; Problem 7
@@ -206,12 +206,12 @@
                     (recur nth (+ n 1) current)))
             (recur nth (+ n 1) count))))
 
-(assert (= (find-nth-prime 6) 13))
+;;(assert (= (find-nth-prime 6) 13))
 
 (defn euler7 []
     (find-nth-prime 10001))
 
-(assert (= 104743 (euler7)))
+;;(assert (= 104743 (euler7)))
 
 ;; Problem 8
 ;; Find the greatest product of five consecutive digits in the 1000-digit number.
@@ -366,8 +366,11 @@
       r
       (recur (* n r) n (dec p)))))
 
+(defn digits [n]
+  (map #(Character/digit % 10) (str n)))
+
 (defn sum-digits [n]
-  (sum (map #(Character/digit % 10) (str n))))
+  (sum (digits n)))
 
 (defn euler16 []
   (sum-digits (expt 2 1000)))
@@ -394,7 +397,64 @@
     (map #(apply expt %)
          (cartesian-product (range 2 101) (range 2 101))))))
 
+;; Problem #34
+;; Answer:
+;; 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
+;; Find the sum of all numbers which are equal to the sum of the factorial of their digits.
+;; Note: as 1! = 1 and 2! = 2 are not sums they are not included.
+
+(defn fac-of-digits [n]
+  (sum (map fac (digits n))))
+
+(defn do-it-doug []
+  (loop [i 10]
+    (println (str "i " i ": " (fac-of-digits i)))
+    (read-line)
+    (recur (inc i))))
+
+
+;; Problem 14
+;; Answer: 837799
+;; (Slow)
+;;
+;; The following iterative sequence is defined for the set of positive integers:
+;;
+;; n -> n/2 (n is even)
+;; n -> 3n + 1 (n is odd)
+;;
+;; Using the rule above and starting with 13, we generate the following sequence:
+;;
+;; 13  40  20  10  5  16  8  4  2  1
+;; It can be seen that this sequence (starting at 13 and finishing at 1) contains 10
+;; terms. Although it has not been proved yet (Collatz Problem), it is thought that
+;; all starting numbers finish at 1.
+;;
+;; Which starting number, under one million, produces the longest chain?
+;;
+;; NOTE: Once the chain starts the terms are allowed to go above one million.
+
+(defn next-collatz [n]
+  (cond (= 1 n) nil
+        (even? n) (/ n 2)
+        :else (+ (* 3 n) 1)))
+
+(defn collatz [n]
+  (take-while (complement nil?) (iterate next-collatz n)))
+
+(defn find-longest-collatz-under
+  ([max]
+     (find-longest-collatz-under max 0 0))
+  ([max len n]
+     (if (= max 0)
+       n
+       (let [cur (collatz max)
+             cur-len (count cur)]
+         (if (> cur-len len)
+           (recur (dec max) cur-len max)
+           (recur (dec max) len n))))))
+
+
+(defn euler14 []
+  (find-longest-collatz-under 1000000 0 0))
+
 ;; TODO: use with-command-line-args to do some stuff.
-
-
-
