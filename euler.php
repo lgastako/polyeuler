@@ -5,7 +5,9 @@
 //
 // Find the sum of all the multiples of 3 or 5 below 1000.
 function euler1() {
-   return array_sum(array_filter(range(3, 999), create_function('$x', 'return ($x % 3 == 0) || ($x % 5 == 0);')));
+   return array_sum(array_filter(range(3, 999),
+                    create_function('$x',
+                                    'return ($x % 3 == 0) || ($x % 5 == 0);')));
 }
 
 $eulers = array(
