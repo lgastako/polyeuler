@@ -531,3 +531,57 @@
 (defn euler42 []
   (count-triangle-words-in-file
    "/home/john/src/polyeuler/inputs/42/words.txt"))
+
+
+;; Problem #59
+;; Answer: 107359
+
+(def e59-keyspace
+     (cartesian-product (range 97 123)
+                        (range 97 123)
+                        (range 97 123)))
+
+(defn e59-decrypt
+  ([numlist key]
+     (e59-decrypt (interleave numlist (cycle key))))
+  ([pairs]
+     (apply str (map #(char (apply bit-xor %)) (partition 2 pairs)))))
+
+(defn high-ascii? [text]
+  (first (filter #(> (int %) 126) text)))
+
+(defn low-ascii? [text]
+  (first (filter #(< (int %) 20) text)))
+
+(defn looks-english? [text]
+  (and
+   (not (high-ascii? text))
+   (not (low-ascii? text))
+   (> (.indexOf text " the ") -1)
+   (> (.indexOf text " and ") -1)
+   (> (.indexOf text " ") -1)))
+
+(defn crack-e59-ciphertext-as-numlist
+  ([numlist]
+     (crack-e59-ciphertext-as-numlist numlist e59-keyspace))
+  ([numlist keys]
+     (let [remaining (count keys)]
+       (if (= (rem remaining 100) 0)
+         (println "trying again... remaing keys: " remaining)))
+     (if (<= (count keys) 0)
+       nil
+       (let [plaintext (str (e59-decrypt numlist (first keys)))]
+         (if (looks-english? plaintext)
+           plaintext
+           (recur numlist (rest keys)))))))
+
+(defn euler59 []
+  (let [filename "/home/john/src/polyeuler/inputs/59/cipher1.txt"
+        contents (slurp filename)
+        text-numbers (re-seq #"\d+" contents)
+        ciphertext-as-numlist (map str-to-int text-numbers)]
+    (sum
+     (map int
+          (crack-e59-ciphertext-as-numlist ciphertext-as-numlist)))))
+
+

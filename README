@@ -6,7 +6,7 @@ answers to each of the euler problems in order, or, if invoked with arguments
 treats the arguments as problem numbers and prints the answer to the
 appropriate problems.
 
-I also plan at some point (probably once I have gotten the CLI done for 
+I also plan at some point (probably once I have gotten the CLI done for
 each of the languages I'm using) to also implement printing of timing
 information in the output of each result and then optimize each solution
 to be quick (a few seconds or less whenever possible and under a minute
@@ -28,7 +28,7 @@ CURRENT SOLUTIONS
 in parens)):
 
 C (6) +cli
-Clojure (13+) -cli
+Clojure (14+) -cli
 Erlang (7) -cli
 Fortran (3) -cli
 Fan (3) +cli
@@ -46,7 +46,7 @@ Scala (2) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
-That's 18 languages with 115+ (overlapping) solutions.
+That's 18 languages with 116+ (overlapping) solutions.
 
 
 Missing languages that I would like to (and probably will) add:
