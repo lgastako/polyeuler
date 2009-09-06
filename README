@@ -46,7 +46,50 @@ Scala (2) +cli
 Scheme (7) -cli
 Haskell (20+) -cli
 
+
 That's 18 languages with 116+ (overlapping) solutions.
+
+
+Language list for each solution:
+#1:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
+   Lua, Nice, OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
+#2:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
+   Lua, Nice, OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
+#3:C, Common Lisp, Clojure, Erlang, Fortran, Haskell, Java*, JavaScript, Lua,
+   OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
+#4:C, Common Lisp, Clojure, Erlang, Haskell, Fan, Fortran, Java, JavaScript,
+   Lua, Pascal, Perl, Python, Ruby, Scheme
+#5:C, Common Lisp, Clojure, Erlang*, Haskell*, Java, JavaScript*, Lua, Perl,
+   Python, Ruby, Scheme
+#6:C, Common Lisp, Clojure, Erlang, Haskell, JavaScript, Perl, Python, Lua,
+   Ruby, Scheme
+#7:Common Lisp, Clojure, Erlang, Haskell*, JavaScript, Lua, Perl, Python, Ruby,
+   Scheme*
+#8:Clojure, Haskell
+#9:Clojure, Haskell
+#10:Clojure
+#11:Clojure, Haskell
+#12:Haskell*
+#13:Haskell
+#14:Clojure, Haskell*
+#16:Clojure, Haskell
+#20:Clojure, Haskell
+#21:Haskell*
+#25:Haskell
+#26:Haskell
+#29:Clojure, Haskell
+#30:Haskell
+#34:Clojure, Haskell
+#35:Haskell*
+#36:Haskell
+#40:Clojure
+#42:Clojure
+#52:Haskell
+#59:Clojure
+
+* Idicates a slow solution.
+
+That's 28 unique problems solved.
 
 
 Missing languages that I would like to (and probably will) add:

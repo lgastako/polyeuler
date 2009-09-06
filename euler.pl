@@ -8,10 +8,10 @@ use POSIX;
 
 # Euler #1
 # Answer: 233168
-# 
+#
 # If we list all the natural numbers below 10 that are multiples of 3 or 5,
 # we get 3, 5, 6 and 9. The sum of these multiples is 23.
-# 
+#
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
 sub euler1
@@ -153,7 +153,7 @@ sub divisible_by_all
     $result;
 }
 
-sub euler5 
+sub euler5
 {
     my $n = 2520;
     my @ds = (20, 19, 18, 17, 16, 15, 14, 13, 12, 11);
@@ -211,7 +211,7 @@ sub euler6
 #             foreach $prime (@primes) {
 #                 if ($i )
 #             }
-#             
+#
 #         }
 #     }
 # }
