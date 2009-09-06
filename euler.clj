@@ -40,7 +40,7 @@
             true
             (recur (rest ns) potential-multiple))))
 
-(defn sum-of-all-multiples 
+(defn sum-of-all-multiples
     ([ns max] (sum-of-all-multiples ns max 0))
     ([ns max acc]
         (if (zero? max)
@@ -95,9 +95,9 @@
     (and (factor? n f) (prime? f)))
 
 ; May be edge case problem here with sqrt as above
-(defn largest-prime-factor 
+(defn largest-prime-factor
     ([n] (largest-prime-factor n (int (sqrt n))))
-    ([n f] 
+    ([n f]
         (if (prime-factor? n f)
             f
             (recur n (- f 1)))))
@@ -121,7 +121,7 @@
             (or (>= 1 len)
                 (recur (. s (substring 1 (dec len))))))))
 
-(defn palindrome-start-digit 
+(defn palindrome-start-digit
     ([n] (palindrome-start-digit n ""))
     ([n s]
         (if (<= n 0)
@@ -129,7 +129,7 @@
             (recur (- n 1) (str s "9")))))
 
 (defn largest-palindromic-number
-    ([num-digits] 
+    ([num-digits]
         (let [start (palindrome-start-digit num-digits)]
             (largest-palindromic-number num-digits start start start 0)))
     ([num-digits x y start acc]
@@ -155,7 +155,7 @@
 (defn divisible-by-all? [n fs]
     (every? #(factor? n %) fs))
 
-(defn find-divisible-by-all 
+(defn find-divisible-by-all
     ([min max] (find-divisible-by-all min max max))
     ([min max n]
         (if (divisible-by-all? n (range min max))
@@ -171,12 +171,12 @@
 
 
 ;; Problem 6
-;; The sum of the squares of the first ten natural numbers is,
+;; The sum of the squares of the first ten natural numbers is
 ;; 12 + 22 + ... + 102 = 385
-;; The square of the sum of the first ten natural numbers is,
+;; The square of the sum of the first ten natural numbers is
 ;; (1 + 2 + ... + 10)2 = 552 = 3025
 ;; Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025  385 = 2640.
-;; 
+;;
 ;; Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
 (defn sum-of-squares [ns]
@@ -196,7 +196,7 @@
 ;; By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 ;; What is the 10001st prime number?
 
-(defn find-nth-prime 
+(defn find-nth-prime
     ([nth] (find-nth-prime nth 2 0))
     ([nth n count]
         (if (prime? n)
@@ -235,27 +235,27 @@
 ;                     "84580156166097919133875499200524063689912560717606"
 ;                     "05886116467109405077541002256983155200055935729725"
 ;                     "71636269561882670428252483600823257530420752963450"))
-; 
+;
 ;(defn product-of-n-consecutive-digits-at [n at s]
 ;    (apply * (map char-to-int (. s substring at (+ at 5)))))
 ;
 ;(product-of-n-consecutive-digits-at 5 0 prob8-data)
 ;
-;(defn euler8 [] 
+;(defn euler8 []
 ;    (apply max (map #(product-of-n-consecutive-digits-at 5 % prob8-data) (range 0 (- (count prob8-data) 5)))))
 ;
 ;(assert (= 40824 (euler8)))
 ;
 ;
 ;; Problem 9
-;;A Pythagorean triplet is a set of three natural numbers, a  b  c, for which,
+;;A Pythagorean triplet is a set of three natural numbers, a  b  c, for which
 ;; a^2 + b^2 = c^2
 ;; For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
 ;;
 ;; There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 ;; Find the product abc.
 ;
-;(defn find-a-pythagorean-triplet-with-sum 
+;(defn find-a-pythagorean-triplet-with-sum
 ;    ([sum] (find-a-pythagorean-triplet-with-sum sum 0 0 0))
 ;    ([sum a b c]
 ;        (if (and (= (+ (square a) (square b)) (square c)) (= (+ a b c) sum))
@@ -306,7 +306,7 @@
 ;;; 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
 ;;;
 ;;; Let us list the factors of the first seven triangle numbers:
-;;; 
+;;;
 ;;;     1: 1
 ;;;     3: 1,3
 ;;;     6: 1,2,3,6
@@ -336,7 +336,7 @@
 ;                                (conj acc i)
 ;                                acc)))))
 ;
-;(defn find-lowest-triangle-number-with-more-than-n-divisors 
+;(defn find-lowest-triangle-number-with-more-than-n-divisors
 ;   ([n] find-lowest-triangle-number-with-more-than-n-divisors n 1)
 ;   ([n i]
 ;    (println "wtf")))
@@ -381,7 +381,7 @@
 ;; n! means n  (n * 1)  ...  3 * 2 * 1
 ;; Find the sum of the digits in the number 100!
 
-(defn fac [n] 
+(defn fac [n]
   (apply * (range 2 (inc n))))
 
 (defn euler20 []
@@ -458,3 +458,40 @@
   (find-longest-collatz-under 1000000 0 0))
 
 ;; TODO: use with-command-line-args to do some stuff.
+
+(defn triangle-number?
+  ([n]
+     (if (= 1 n)
+       true
+       (triangle-number? (- n 1) 2)))
+  ([n m]
+     (if (= n m)
+       true
+       (if (> m n)
+         false
+         (recur (- n m) (inc m))))))
+
+(defn alphabet-position [c]
+  (- (int (Character/toLowerCase c)) 96))
+
+(defn word-value [word]
+  (sum (map alphabet-position word)))
+
+(defn triangle-word? [word]
+  (triangle-number? (word-value word)))
+
+(defn count-triangle-words [words]
+  (sum (map #(if (triangle-word? %) 1 0) words)))
+
+(defn e42-word-seq [text]
+  (req-seq #"\"([^\"]+)\",?" text])
+
+(defn get-euler42-words [text]
+  (map second (e42-word-seq text)))
+
+(defn count-triangle-words-in-file [filename]
+  (count-triangle-words (get-euler42-words (slurp filename))))
+
+(defn euler42 []
+  (count-triangle-words-in-file
+   "/home/john/src/polyeuler/inputs/42/words.txt"))

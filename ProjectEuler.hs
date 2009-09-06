@@ -35,7 +35,7 @@ euler2Alt :: Integer
 euler2Alt = sum . takeWhile (< 4000000) . filter even $ fibs
 
 
--- The fibonacci sequence.  I original did a naive implementation,
+-- The fibonacci sequence.  I originally did a naive implementation,
 -- then ganked this rather clean implementation from the intarwebs:
 --
 --     fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
@@ -763,8 +763,9 @@ rotations n =
 
 isCircularPrime = (all prime) . rotations
 
--- too slow or some other problem keeps it from finishing even over an hour+
--- I think I basically just need a faster prime generator.  Need to look into seives, etc.
+-- too slow or some other problem keeps it from finishing even over an
+-- hour+ I think I basically just need a faster prime generator.  Need
+-- to look into seives, etc.
 euler35 = length (filter isCircularPrime (takeWhile (< 1000000) primes))
 
 
