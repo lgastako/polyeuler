@@ -459,6 +459,42 @@
 
 ;; TODO: use with-command-line-args to do some stuff.
 
+(defn between [n a z]
+  (and (< a n)
+       (> z n)))
+
+(defn between-inclusive [n a z]
+  (between n (dec a) (inc z)))
+
+(defn e40-n-at [s target start]
+  (let [target-adj-for-partial-string (- target start)
+        target-adj-for-string-indexing (dec target-adj-for-partial-string)
+        c (.charAt s target-adj-for-string-indexing)
+        i (int c)]
+    (- i 48)))
+
+(defn e40-ds
+  ([ns]
+     (e40-ds ns 0 1 []))
+  ([ns start i rs]
+     (if (<= (count ns) 0)
+       rs
+       (let [s (str i)
+             end (+ start (count s))
+             target (first ns)]
+         (if (between-inclusive target start end)
+           (recur (rest ns)
+                  start
+                  i
+                  (conj rs (e40-n-at s target start)))
+           (recur ns
+                  end
+                  (inc i)
+                  rs))))))
+
+(defn euler40 []
+  (apply * (e40-ds [1 10 100 1000 10000 100000 1000000])))
+
 (defn triangle-number?
   ([n]
      (if (= 1 n)
@@ -484,7 +520,7 @@
   (sum (map #(if (triangle-word? %) 1 0) words)))
 
 (defn e42-word-seq [text]
-  (req-seq #"\"([^\"]+)\",?" text])
+  (re-seq #"\"([^\"]+)\",?" text))
 
 (defn get-euler42-words [text]
   (map second (e42-word-seq text)))
