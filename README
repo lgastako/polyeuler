@@ -40,6 +40,7 @@ Nice (2) -cli
 OCaml (2) -cli
 Pascal (4) -cli
 Perl (6) +cli
+PHP (1) +cli
 Python (7) + cli
 Ruby (7+) +cli
 Scala (2) +cli
@@ -52,7 +53,7 @@ That's 18 languages with 116+ (overlapping) solutions.
 
 Language list for each solution:
 #1:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
-   Lua, Nice, OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
+   Lua, Nice, OCaml, Pascal, Perl, PHP, Python, Ruby, Scala, Scheme
 #2:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
    Lua, Nice, OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
 #3:C, Common Lisp, Clojure, Erlang, Fortran, Haskell, Java*, JavaScript, Lua,
@@ -119,7 +120,6 @@ TCL
 SQL?
 unix shells (bash / ksh / csh / tcsh / zsh)
 other misc unixy things (awk, sed, etc)
-PHP? Maybe not, just on principal.
 Postscript
 Brainfuck
 Whitespace
