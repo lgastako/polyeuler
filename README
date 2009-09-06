@@ -40,7 +40,7 @@ Nice (2) -cli
 OCaml (2) -cli
 Pascal (4) -cli
 Perl (6) +cli
-PHP (1) +cli
+PHP (2) +cli
 Python (7) + cli
 Ruby (7+) +cli
 Scala (2) +cli
@@ -48,14 +48,14 @@ Scheme (7) -cli
 Haskell (20+) -cli
 
 
-That's 18 languages with 116+ (overlapping) solutions.
+That's 19 languages with 118+ (overlapping) solutions.
 
 
 Language list for each solution:
 #1:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
    Lua, Nice, OCaml, Pascal, Perl, PHP, Python, Ruby, Scala, Scheme
 #2:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
-   Lua, Nice, OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
+   Lua, Nice, OCaml, Pascal, Perl, PHP, Python, Ruby, Scala, Scheme
 #3:C, Common Lisp, Clojure, Erlang, Fortran, Haskell, Java*, JavaScript, Lua,
    OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
 #4:C, Common Lisp, Clojure, Erlang, Haskell, Fan, Fortran, Java, JavaScript,
