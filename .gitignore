@@ -3,7 +3,9 @@ ocaml-euler
 fortran-euler
 niceeuler.jar
 nice/euler/package.nicei
+go-euler
 *.cmi
 *.cmo
 *.cmx
 *.o
+*.6

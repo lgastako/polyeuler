@@ -1,4 +1,4 @@
-all: c-euler Euler.class fortran-euler niceeuler.jar
+all: c-euler Euler.class fortran-euler niceeuler.jar go-euler
 
 c-euler: euler.c
 	# -lgmp -I/opt/local/include -L/opt/local/lib
@@ -28,5 +28,11 @@ run-nice: niceeuler.jar
 ocaml-euler: euler.ml
 	ocamlopt euler.ml -o ocaml-euler
 
+go-euler: euler.6
+	6l -o go-euler euler.6
+
+euler.6: euler.go
+	6g euler.go
+
 clean:
-	\rm -f c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o}
+	\rm -f c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o} *.6 go-euler

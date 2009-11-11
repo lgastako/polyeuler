@@ -32,6 +32,7 @@ Clojure (14+) -cli
 Erlang (7) -cli
 Fortran (3) -cli
 Fan (3) +cli
+Go (2) +partial cli
 Java (5) +cli
 Javascript (7) +cli
 Common LISP (7) +partial cli
@@ -48,13 +49,13 @@ Scheme (7) -cli
 Haskell (20+) -cli
 
 
-That's 19 languages with 118+ (overlapping) solutions.
+That's 20 languages with 120+ (overlapping) solutions.
 
 
 Language list for each solution:
-#1:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
+#1:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Go, Haskell, Java, JavaScript,
    Lua, Nice, OCaml, Pascal, Perl, PHP, Python, Ruby, Scala, Scheme
-#2:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Haskell, Java, JavaScript,
+#2:C, Common Lisp, Clojure, Erlang, Fan, Fortran, Go, Haskell, Java, JavaScript,
    Lua, Nice, OCaml, Pascal, Perl, PHP, Python, Ruby, Scala, Scheme
 #3:C, Common Lisp, Clojure, Erlang, Fortran, Haskell, Java*, JavaScript, Lua,
    OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
