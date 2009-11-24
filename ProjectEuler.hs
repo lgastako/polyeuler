@@ -147,7 +147,8 @@ euler4 =
 
 -- Test n for palindromicity.
 palindromicNumber :: Integer -> Bool
-palindromicNumber n = show n == (reverse . show) n
+palindromicNumber n = s == reverse s
+    where s = show n
 
 
 -------------
@@ -399,11 +400,11 @@ fiveAtATime = nAtATime 5
 --
 -- What is the value of the first triangle number to have over five hundred divisors?
 euler12 :: Integer
-euler12 = head [x | x <- triangleNumbers, ((num_factors x) > 500)]
+euler12 = head [x | x <- triangleNumbers, ((numFactors x) > 500)]
 
 
-num_factors :: Integer -> Int
-num_factors n = (length (factors n))
+numFactors :: Integer -> Int
+numFactors n = (length (factors n))
 
 
 -- An infinite sequence of triangle numbers.
@@ -462,11 +463,11 @@ euler14' n res len =
     then
         res
     else
-        let new_len = collatzLength (fromIntegral n)
+        let newLen = collatzLength (fromIntegral n)
         in
-          if new_len > len
+          if newLen > len
           then
-              euler14' (succ n) n new_len
+              euler14' (succ n) n newLen
           else
               euler14' (succ n) res len
 
