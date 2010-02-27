@@ -4,6 +4,7 @@ import EulerInputs
 import Char (digitToInt, intToDigit)
 import List (sort, nub, tails, transpose)
 import Data.List (foldl1')
+import Data.Array
 
 -------------
 -- Problem #1
@@ -493,6 +494,27 @@ collatz n
         | otherwise = ((3 * n) + 1)
 
 
+-----------
+-- Problem #15
+-- Answer: 137846528820
+--
+--  Starting in the top left corner of a 22 grid, there are 6 routes
+-- (without backtracking) to the bottom right corner.
+--
+-- [diagram]
+--
+-- How many routes are there through a 20 x 20 grid?
+
+e15values = array ((0, 0), (20, 20)) [((x, y), e15 x y) | x <- [0..20],
+                                                          y <- [0..20]]
+    where
+      e15 0 0 = 1
+      e15 x 0 = 1
+      e15 0 y = 1
+      e15 x y = (e15values!((pred x), y)) + (e15values!(x, (pred y)))
+
+euler15 = e15values!(20, 20)
+
 -------------
 -- Problem #16
 -- Answer: 1366
@@ -675,7 +697,7 @@ sumOfPthPower n p = sum (map (`intPow` p) (integerDigits n))
 -- euler53 =
 --     length (filter (> 1000000) valuesOfNCR)
 --         where
---           valuesOfNCR = 
+--           valuesOfNCR =
 
 --     let range = [1..100]
 --     in map something range
@@ -683,7 +705,7 @@ sumOfPthPower n p = sum (map (`intPow` p) (integerDigits n))
 
 
 
--- nextCombos n r = 
+-- nextCombos n r =
 --     if r > n
 --     then nextCombos (succ n) 1
 --     else combinationsOf r [1..n]
@@ -692,15 +714,6 @@ sumOfPthPower n p = sum (map (`intPow` p) (integerDigits n))
 -- combinationsOf 0 _ = [[]]
 -- combinationsOf _ [] = []
 -- combinationsOf k (x:xs) = map (x:) (combinationsOf (k-1) xs) ++ combinationsOf k xs
-
-
-
-
-
-
-
-
-
 
 
 -- Test n for primality.
