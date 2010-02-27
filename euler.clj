@@ -442,8 +442,30 @@
   (find-longest-collatz-under 1000000 0 0))
 
 
-;; Problem #16
+;; Problem #15
+;; Answer: 137846528820
 ;;
+;; Starting in the top left corner of a 22 grid, there are 6 routes
+;; (without backtracking) to the bottom right corner.
+;;
+;; [diagram]
+;;
+;; How many routes are there through a 20 x 20 grid?
+
+(defn e15 [x y]
+  (cond (= 0 x y) 1
+        (= 0 x) 1
+        (= 0 y) 1
+        :else (+ (e15 (dec x) y)
+                  (e15 x (dec y)))))
+
+(def e15 (memoize e15))
+
+(defn euler15 []
+  (e15 20 20))
+
+
+;; Problem #16
 ;; Answer: 1366
 ;;
 ;; 2^(15) = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
