@@ -47,10 +47,10 @@ Reia (1) -cli
 Ruby (7+) +cli
 Scala (2) +cli
 Scheme (7) -cli
-Haskell (20+) -cli
+Haskell (21+) -cli
 
 
-That's 21 languages with 123+ (overlapping) solutions.
+That's 21 languages with 124+ (overlapping) solutions.
 
 
 Language list for each solution:
@@ -79,6 +79,7 @@ Language list for each solution:
 #14: Clojure, Haskell*
 #15: Clojure, Haskell
 #16: Clojure, Haskell
+#17: Haskell
 #20: Clojure, Haskell
 #21: Haskell*
 #25: Haskell
@@ -95,7 +96,7 @@ Language list for each solution:
 
 * Idicates a slow solution.
 
-That's 29 unique problems solved.
+That's 30 unique problems solved.
 
 
 Missing languages that I would like to (and probably will) add:

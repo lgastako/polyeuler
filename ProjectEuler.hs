@@ -1,7 +1,7 @@
 module ProjectEuler where
 
 import EulerInputs
-import Char (digitToInt, intToDigit)
+import Char (digitToInt, intToDigit, isAlpha)
 import List (sort, nub, tails, transpose)
 import Data.List (foldl1')
 import Data.Array
@@ -543,6 +543,55 @@ integerDigits = stringDigits . show
 stringDigits :: String -> [Int]
 stringDigits = map digitToInt
 
+
+----
+-- Problem #17
+--
+-- If the numbers 1 to 5 are written out in words: one, two, three,
+-- four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in
+-- total.
+--
+-- If all the numbers from 1 to 1000 (one thousand) inclusive were
+-- written out in words, how many letters would be used?
+--
+-- NOTE: Do not count spaces or hyphens. For example, 342 (three
+-- hundred and forty-two) contains 23 letters and 115 (one hundred and
+-- fifteen) contains 20 letters. The use of "and" when writing out
+-- numbers is in compliance with British usage.
+
+
+
+euler17 :: Int
+euler17 = letters_in_numbers [1..1000]
+
+letters_in_numbers :: [Int] -> Int
+letters_in_numbers xs = sum $ map (length . alpha_only . num_in_words) xs
+    where
+      alpha_only = filter isAlpha
+
+
+num_in_words n = w n
+    where
+      lows = ["", "one", "two", "three", "four", "five", "six", "seven",
+              "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+              "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+              "nineteen"]
+      tens = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+                          "eighty", "ninety"]
+      w 1000 = "one thousand"
+      w n | n <= 19 = lows !! n
+      w n | n > 19 && n <= 99 = (tens !! ((div n 10) - 2)) ++
+                                if not (r == 0) then
+                                    " " ++ (lows !! r)
+                                else
+                                    ""
+                                        where r = rem n 10
+      w n = (lows !! (div n 100)) ++ " hundred" ++
+            if not (r == 0) then
+                " and " ++ (w r)
+            else
+                ""
+                    where r = rem n 100
 
 -------------
 -- Problem #20
