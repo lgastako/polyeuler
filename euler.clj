@@ -492,6 +492,57 @@
   (sum-digits (expt 2 1000)))
 
 
+;; Problem #17
+;; Answer: 21124
+;;
+;; If the numbers 1 to 5 are written out in words: one, two, three,
+;; four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in
+;; total.
+;;
+;; If all the numbers from 1 to 1000 (one thousand) inclusive were
+;; written out in words, how many letters would be used?
+;;
+;; NOTE: Do not count spaces or hyphens. For example, 342 (three
+;; hundred and forty-two) contains 23 letters and 115 (one hundred and
+;; fifteen) contains 20 letters. The use of "and" when writing out
+;; numbers is in compliance with British usage.
+
+(defn length [#^String x]
+  (. x (length)))
+
+(defn alpha? [#^Character c]
+  (Character/isLetter c))
+
+(defn alpha-only [s]
+  (apply str (filter alpha? s)))
+
+(defn num-in-words [n]
+  (let [lows ["", "one", "two", "three", "four", "five", "six", "seven",
+              "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+              "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+              "nineteen"]
+        tens ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+              "eighty", "ninety"]]
+    (cond (= n 1000) "one thousand"
+          (< n 20) (lows n)
+          (< n 100) (let [r (rem n 10)]
+                      (str (tens (- (int (/ n 10)) 2))
+                           (if (= r 0)
+                             ""
+                             (str " "(num-in-words r)))))
+          :else (str (lows (int (/ n 100))) " hundred"
+                     (let [r (rem n 100)]
+                       (if (= r 0)
+                         ""
+                         (str " and " (num-in-words r))))))))
+
+(defn letters-in-numbers [xs]
+  (sum (map (comp length alpha-only num-in-words) xs)))
+
+(defn euler17 []
+  (letters-in-numbers (range 1 1001)))
+
+
 ;; Problem #20
 ;;
 ;; Answer: 648

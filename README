@@ -28,7 +28,7 @@ CURRENT SOLUTIONS
 in parens)):
 
 C (6) +cli
-Clojure (16+) -cli
+Clojure (17+) -cli
 Erlang (7) -cli
 Fortran (3) -cli
 Fan (3) +cli
@@ -50,7 +50,7 @@ Scheme (7) -cli
 Haskell (21+) -cli
 
 
-That's 21 languages with 124+ (overlapping) solutions.
+That's 21 languages with 125+ (overlapping) solutions.
 
 
 Language list for each solution:
@@ -79,7 +79,7 @@ Language list for each solution:
 #14: Clojure, Haskell*
 #15: Clojure, Haskell
 #16: Clojure, Haskell
-#17: Haskell
+#17: Clojure, Haskell
 #20: Clojure, Haskell
 #21: Haskell*
 #25: Haskell

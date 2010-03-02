@@ -546,6 +546,7 @@ stringDigits = map digitToInt
 
 ----
 -- Problem #17
+-- Answer: 21124
 --
 -- If the numbers 1 to 5 are written out in words: one, two, three,
 -- four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in
@@ -558,8 +559,6 @@ stringDigits = map digitToInt
 -- hundred and forty-two) contains 23 letters and 115 (one hundred and
 -- fifteen) contains 20 letters. The use of "and" when writing out
 -- numbers is in compliance with British usage.
-
-
 
 euler17 :: Int
 euler17 = letters_in_numbers [1..1000]
