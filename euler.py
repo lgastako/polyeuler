@@ -8,6 +8,34 @@
 import sys
 import math
 
+from operator import attrgetter
+
+
+def memoize(method):
+
+    def make_key_from_args(args, kwargs):
+        return (args, repr(kwargs))
+
+    def find_or_create_cache(obj, method):
+        name = "memo_cache_for_%s" % method.__name__
+        if not hasattr(obj, name):
+            setattr(obj, name, {})
+        return getattr(obj, name)
+
+    def memoized(self, *args, **kwargs):
+        cache = find_or_create_cache(self, method)
+        key = make_key_from_args(args, kwargs)
+        if not key in cache:
+            cache[key] = apply(method, [self] + list(args), kwargs)
+        return cache[key]
+
+    return memoized
+
+
+def read_input(problem_number, filename):
+    with open("inputs/%d/%s" % (problem_number, filename)) as f:
+        return f.read()
+
 
 def euler1():
     """Euler #1
@@ -171,14 +199,90 @@ def euler7():
     return result
 
 
-EULERS = [
-    euler1,
-    euler2,
-    euler3,
-    euler4,
-    euler5,
-    euler6,
-]
+def euler18():
+    """Problem #18
+    Answer:
+
+    By starting at the top of the triangle below and moving to
+    adjacent numbers on the row below, the maximum total from top to
+    bottom is 23.
+
+    3
+    7 4
+    2 4 6
+    8 5 9 3
+
+    That is, 3 + 7 + 4 + 9 = 23.
+
+    Find the maximum total from top to bottom of the triangle below:
+
+    (Triangle reproduced in input file problem18.txt)
+
+    NOTE: As there are only 16384 routes, it is possible to solve this
+    problem by trying every route. However, Problem 67, is the same
+    challenge with a triangle containing one-hundred rows; it cannot
+    be solved by brute force, and requires a clever method! ;o)
+
+    """
+
+    class Node(object):
+
+        def __init__(self, value):
+            self.value = int(value)
+            self.parents = []
+
+        @property
+        @memoize
+        def max_parent_cost(self):
+            if len(self.parents) < 1:
+                return 0
+            return max(self.parents, key=attrgetter("full_cost")).full_cost
+
+        @property
+        def full_cost(self):
+            return self.max_parent_cost + self.value
+
+        def __repr__(self):
+            return "Node(%d)" % self.value
+
+        def __str__(self):
+            return repr(self)
+
+    def make_graph(contents):
+        root = None
+        previous_line = None
+        for line in contents.split("\n"):
+            if not line:
+                break
+            nums = line.strip().split(" ")
+            if not root:
+                if len(nums) > 1:
+                    raise Exception("Expected a single root.")
+                root = Node(nums[0])
+                previous_line = [root]
+            else:
+                line_nodes = [Node(n) for n in nums]
+                for index, node in enumerate(line_nodes):
+                    if index > 0:
+                        node.parents.append(previous_line[index - 1])
+                    if index < len(previous_line):
+                        node.parents.append(previous_line[index])
+                previous_line = line_nodes
+        return previous_line
+
+    last_row = make_graph(read_input(18, "triangle.txt"))
+    max_terminal = max(last_row, key=attrgetter("full_cost"))
+#    import ipdb; ipdb.set_trace()
+    return max_terminal.full_cost
+
+
+EULERS = [euler1,
+          euler2,
+          euler3,
+          euler4,
+          euler5,
+          euler6,
+          euler18]
 
 
 def main():
