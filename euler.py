@@ -48,7 +48,7 @@ def euler2():
     return n
 
 
-def is_prime(n):
+def slow_is_prime(n):
     for x in range(2, int(math.ceil(math.sqrt(n)))):
         if n % x == 0:
             return False
@@ -67,7 +67,7 @@ def euler3():
     X = 600851475143
     n = math.ceil(math.sqrt(X))
     while True:
-        if X % n == 0 and is_prime(n):
+        if X % n == 0 and slow_is_prime(n):
             return n
         n -= 1
 
@@ -148,7 +148,8 @@ def euler7():
     """Problem #7
     Answer: 104743
 
-    By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+    By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
+    can see that the 6th prime is 13.
 
     What is the 10001st prime number?
 
@@ -158,10 +159,8 @@ def euler7():
     primes = [2]
     result = 0
     while True:
-        is_prime = True
         for prime in primes:
             if n % prime == 0:
-                is_prime = False
                 break
         else:
             if len(primes) >= 10000:
@@ -182,11 +181,15 @@ EULERS = [
 ]
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) > 1:
         for n in sys.argv[1:]:
             n = int(n)
             print "%d: %d" % (n, eval("euler%d()" % n))
     else:
         for index, euler in enumerate(EULERS):
-            print "%d: %d" % (index+1, euler())
+            print "%d: %d" % (index + 1, euler())
+
+
+if __name__ == "__main__":
+    main()
