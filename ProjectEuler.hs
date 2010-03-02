@@ -564,6 +564,7 @@ stringDigits = map digitToInt
 euler17 :: Int
 euler17 = letters_in_numbers [1..1000]
 
+
 letters_in_numbers :: [Int] -> Int
 letters_in_numbers xs = sum $ map (length . alpha_only . num_in_words) xs
     where
