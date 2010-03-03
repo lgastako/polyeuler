@@ -42,7 +42,7 @@ OCaml (2) -cli
 Pascal (4) -cli
 Perl (6) +cli
 PHP (2) +cli
-Python (7) +cli
+Python (8) +cli
 Reia (1) -cli
 Ruby (7+) +cli
 Scala (2) +cli
@@ -50,7 +50,7 @@ Scheme (7) -cli
 Haskell (21+) -cli
 
 
-That's 21 languages with 125+ (overlapping) solutions.
+That's 21 languages with 126+ (overlapping) solutions.
 
 
 Language list for each solution:
@@ -80,6 +80,7 @@ Language list for each solution:
 #15: Clojure, Haskell
 #16: Clojure, Haskell
 #17: Clojure, Haskell
+#18: Python
 #20: Clojure, Haskell
 #21: Haskell*
 #25: Haskell
@@ -96,7 +97,7 @@ Language list for each solution:
 
 * Idicates a slow solution.
 
-That's 30 unique problems solved.
+That's 31 unique problems solved.
 
 
 Missing languages that I would like to (and probably will) add:
