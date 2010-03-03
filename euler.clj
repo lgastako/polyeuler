@@ -543,6 +543,93 @@
   (letters-in-numbers (range 1 1001)))
 
 
+;; Problem #19
+;; Answer: 171
+;;
+;; You are given the following information, but you may prefer to do
+;; some research for yourself.
+;;
+;; 1 Jan 1900 was a Monday.
+;; Thirty days has September,
+;; April, June and November.
+;; All the rest have thirty-one,
+;; Saving February alone,
+;; Which has twenty-eight, rain or shine.
+;; And on leap years, twenty-nine.
+;; A leap year occurs on any year evenly divisible by 4, but not on a
+;;    century unless it is divisible by 400.
+;;
+;; How many Sundays fell on the first of the month during the
+;; twentieth century (1 Jan 1901 to 31 Dec 2000)?
+
+(defn leap-year? [y]
+  (if (and (= (rem y 4) 0)
+           (or (= (rem y 400) 0)
+               (not (= (rem y 100) 0))))
+    true
+    false))
+
+(defn last-day-of-year? [d m]
+  (and (= d 31)
+       (= m 12)))
+
+(defn last-day-of-month? [d m y]
+  (>= d (days-in-month m y)))
+
+(defn in? [coll v]
+  (some #(= % v) coll))
+
+(defn days-in-month [m y]
+  (cond (in? [4 6 9 11] m) 30
+        (= 2 m) (if (leap-year? y)
+                  29
+                  28)
+        :else 31))
+
+(defn next-month [m]
+  (let [t (inc m)]
+    (if (= 13 t)
+      1
+      t)))
+
+(defn next-e18 [{y :y m :m d :d wd :wd}]
+  (let [ldom (last-day-of-month? d m y)]
+    {:y (if (last-day-of-year? d m)
+          (inc y)
+          y)
+     :m (if ldom
+          (next-month m)
+          m)
+     :d (if ldom
+          1
+          (inc d))
+     :wd (mod (inc wd) 7)}))
+
+(def e18-seq
+     (lazy-cat [{:y 1900
+                 :m 1
+                 :d 1
+                 :wd 1}]
+               (map next-e18 e18-seq)))
+
+(defn sunday? [{wd :wd}]
+  (= 0 wd))
+
+(defn first-dom? [{d :d}]
+  (= 1 d))
+
+(defn <e18end? [{y :y}]
+  (<= y 2000))
+
+(defn <1901? [{y :y}]
+  (< y 1901))
+
+(def e18-dates
+     (take-while <e18end? (drop-while <1901? e18-seq)))
+
+(defn euler18 []
+  (count (filter #(and (sunday? %) (first-dom? %)) e18-dates)))
+
 ;; Problem #20
 ;;
 ;; Answer: 648
