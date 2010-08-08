@@ -30,6 +30,7 @@ in parens)):
 C (6) +cli
 Clojure (18+) -cli
 Erlang (7) -cli
+F# (1) +cli
 Fortran (3) -cli
 Fan (3) +cli
 Go (2) +partial cli
@@ -51,11 +52,11 @@ Scheme (7) -cli
 Haskell (21+) -cli
 
 
-That's 22 languages with 129+ (overlapping) solutions.
+That's 23 languages with 130+ (overlapping) solutions.
 
 
 Language list for each solution:
-#1: C, Common Lisp, Clojure, Erlang, Fan, Fortran, Go, Haskell, Java,
+#1: C, Common Lisp, Clojure, Erlang, Fan, F#, Fortran, Go, Haskell, Java,
     JavaScript, Lua, Nice, OCaml, Pascal, Perl, PHP, Python, R, Reia, Ruby,
     Scala, Scheme
 #2: C, Common Lisp, Clojure, Erlang, Fan, Fortran, Go, Haskell, Java,
@@ -114,7 +115,6 @@ Ioke
 Oz
 Mathematica
 Smalltalk
-F#
 io
 Forth
 C#
