@@ -1,8 +1,8 @@
 all: c-euler Euler.class fortran-euler niceeuler.jar go-euler
 
 c-euler: euler.c
-	# -lgmp -I/opt/local/include -L/opt/local/lib
-	gcc -m64 -o c-euler euler.c 
+    # -lgmp -I/opt/local/include -L/opt/local/lib
+	gcc -m64 -o c-euler euler.c
 
 Euler.class: Euler.java
 	javac -classpath apfloat.jar Euler.java
@@ -34,5 +34,8 @@ go-euler: euler.6
 euler.6: euler.go
 	6g euler.go
 
+ooc-euler: ooc-euler.ooc
+	rock ooc-euler.ooc
+
 clean:
-	\rm -f c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o} *.6 go-euler
+	\rm -f ooc-euler c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o} *.6 go-euler

@@ -645,6 +645,25 @@
   (sum-digits (fac 100)))
 
 
+;; Problem #22
+;; Answer:
+;;
+;; Using names.txt (right click and 'Save Link/Target As...'), a 46K
+;; text file containing over five-thousand first names, begin by
+;; sorting it into alphabetical order. Then working out the
+;; alphabetical value for each name, multiply this value by its
+;; alphabetical position in the list to obtain a name score.
+;;
+;; For example, when the list is sorted into alphabetical order,
+;; COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name
+;; in the list. So, COLIN would obtain a score of 938 * 53 = 49714.
+;;
+;; What is the total of all the name scores in the file?
+
+(defn euler22 []
+  ...)
+
+
 ;; Problem #29
 ;;
 ;; Answer: 9183
@@ -714,6 +733,34 @@
 
 (defn euler40 []
   (apply * (e40-ds [1 10 100 1000 10000 100000 1000000])))
+
+
+;; Problem 41
+;; 11 April 2003
+;;
+;; We shall say that an n-digit number is pandigital if it makes use
+;; of all the digits 1 to n exactly once. For example, 2143 is a
+;; 4-digit pandigital and is also prime.
+;;
+;; What is the largest n-digit pandigital prime that exists?
+
+
+(defn pandigital? [n]
+  (let [nstr (str n)
+        digits-1-to-n (range 1 (+ 1 (count nstr)))
+        target (map str digits-1-to-n)]
+    (= target (sort (map str (str n))))))
+
+
+(defn panprime? [n]
+  (and (pandigital? n)
+       (prime? n)))
+
+
+(defn euler41 []
+  (first
+   (drop-while (comp not panprime?)
+               (range 987654321 987000000 -1))))
 
 
 (defn triangle-number?
