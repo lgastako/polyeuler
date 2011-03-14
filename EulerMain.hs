@@ -1,13 +1,15 @@
 --import System.TimeIt (timeIt)
 --import Test.BenchPress (bench)
 import ProjectEuler
-
+import System( getArgs )
 -- TODO: Put in some timing stuff in the output.
 -- bench 50 $ do putStr (show (length (take 500 primes)))
 -- bench 50 $ do putStr (show (length (take 500 fast_primes)))
 
 
 main = do
+  args <- getArgs
+  print $ show args
   putStrLn "Project Euler results (via Haskell):"
   putStrLn $ "#1: " ++ (show euler1)
   putStrLn $ "#2: " ++ (show euler2)
@@ -20,8 +22,7 @@ main = do
 --  putStrLn $ "#7: " ++ (show euler7)
   putStrLn $ "#8: " ++ (show euler8)
   putStrLn $ "#9: " ++ (show euler9)
---  putStrLn "#10: Not done yet (and too slow so far)."
---  putStrLn $ "#10: " ++ (show euler10)
+  putStrLn $ "#10: " ++ (show euler10)
   putStrLn $ "#11: " ++ (show euler11)
   putStrLn "#12: Too slow."
 --  putStrLn $ "#12: " ++ (show euler12)
