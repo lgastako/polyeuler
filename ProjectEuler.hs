@@ -230,8 +230,8 @@ nthPrime n = primes !! n
 --
 -- Find the greatest product of five consecutive digits in the
 -- 1000-digit number.
-euler8 :: Int
-euler8 = maximum (productsOfNConsecutiveDigits 5 euler8_input)
+euler8 :: Integer
+euler8 = fromIntegral (maximum (productsOfNConsecutiveDigits 5 euler8_input))
 
 
 -- From the PE forum (adapted to use my equivalent functions)... very nice.
@@ -239,8 +239,8 @@ euler8 = maximum (productsOfNConsecutiveDigits 5 euler8_input)
 -- Cheats in that it also looks at products of strings less than 5
 -- when it gets near the end of the list but that doesn't *really*
 -- matter for this problem.
-euler8Alt :: Int
-euler8Alt = maximum . map (product . take 5) . tails $ stringDigits euler8_input
+euler8Alt :: Integer
+euler8Alt = fromIntegral . maximum . map (product . take 5) . tails $ stringDigits euler8_input
 
 -- The definition of stringDigits does not immediately follow because
 -- it was not originally created until much later, and this function
@@ -311,8 +311,9 @@ euler10 = sum (takeWhile (< 2000000) primes)
 --
 -- What is the greatest product of four adjacent numbers in any
 -- direction (up, down, left, right, or diagonally) in the 20x20 grid?
-euler11 :: Int
-euler11 = maximum [e11MaxColProduct, e11MaxRowProduct] --, e11_max_diag_product]
+euler11 :: Integer
+euler11 = fromIntegral (maximum [e11MaxColProduct, e11MaxRowProduct])
+ --, e11_max_diag_product]
 
 
 -- Find the maximum of all the maximum products from all of the rows.

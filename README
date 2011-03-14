@@ -49,7 +49,7 @@ Reia (1) -cli
 Ruby (7+) +cli
 Scala (2) +cli
 Scheme (7) -cli
-Haskell (21+) -cli
+Haskell (21+) +cli
 
 
 That's 23 languages with 130+ (overlapping) solutions.
