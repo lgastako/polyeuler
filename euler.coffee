@@ -79,8 +79,7 @@ exports.euler8 = ->
     e8Number = loadFileSync "inputs/8/number.txt"
     windowWidth = 5
     maxProduct = 0
-    # TODO: Should this be -1?
-    lastIndex = e8Number.length - windowWidth
+    lastIndex = e8Number.length - windowWidth - 1
     for index in [0..lastIndex]
         window = e8Number.substring index, index + windowWidth
         window = (c for c in window)
