@@ -29,7 +29,7 @@ in parens)):
 
 C (6) +cli
 Clojure (18+) -cli
-CoffeeScript (3) +cli
+CoffeeScript (4) +cli
 Erlang (7) -cli
 F# (1) +cli
 Fortran (3) -cli
@@ -53,7 +53,7 @@ Scheme (7) -cli
 Haskell (21+) +cli
 
 
-That's 24 languages with 132+ (overlapping) solutions.
+That's 24 languages with 133+ (overlapping) solutions.
 
 
 Language list for each solution:
@@ -65,8 +65,8 @@ Language list for each solution:
     Scala, Scheme
 #3: C, Common Lisp, Clojure, Erlang, Fortran, Haskell, Java*, JavaScript, Lua,
     OCaml, Pascal, Perl, Python, Ruby, Scala, Scheme
-#4: C, Common Lisp, Clojure, Erlang, Haskell, Fan, Fortran, Java, JavaScript,
-    Lua, Pascal, Perl, Python, Ruby, Scheme
+#4: C, Common Lisp, Clojure, CoffeeScript, Erlang, Haskell, Fan, Fortran,
+    Java, JavaScript, Lua, Pascal, Perl, Python, Ruby, Scheme
 #5: C, Common Lisp, Clojure, Erlang*, Haskell*, Java, JavaScript*, Lua, Perl,
     Python, Ruby, Scheme
 #6: C, Common Lisp, Clojure, Erlang, Haskell, JavaScript, Perl, Python, Lua,

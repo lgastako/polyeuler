@@ -11,6 +11,8 @@ isEven = (n) -> 0 == n % 2
 atoi = (s) -> parseInt s, "decimal, bitches"
 
 String.prototype.startsWith = (prefix) -> 0 == this.indexOf prefix
+String.prototype.reverse = () -> @split("").reverse().join("")
+
 
 loadFileSync = (fn) ->
     size = fs.statSync(fn).size
@@ -65,6 +67,29 @@ exports.euler2 = ->
         a = b
         b = curFib
     acc
+
+
+# Euler #4
+# Answer:
+#
+# A palindromic number reads the same both ways. The largest palindrome made
+# from the product of two 2-digit numbers is 9009 = 91 99.
+#
+# Find the largest palindrome made from the product of two 3-digit numbers.
+#
+isPalindrome = (n) ->
+    s = "" + n
+    s.reverse() == s
+
+
+# NOTE: Could problably be optimized but this will be more than fast enough.
+exports.euler4 = ->
+    result = 0
+    for i in [100..999]
+        for j in [100..999]
+            product = i * j
+            result = product if product > result and isPalindrome product
+    result
 
 
 # Euler #8
