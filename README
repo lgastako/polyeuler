@@ -29,7 +29,7 @@ in parens)):
 
 C (6) +cli
 Clojure (18+) -cli
-CoffeeScript (2) +cli
+CoffeeScript (3) +cli
 Erlang (7) -cli
 F# (1) +cli
 Fortran (3) -cli
@@ -73,7 +73,7 @@ Language list for each solution:
     Ruby, Scheme
 #7: Common Lisp, Clojure, Erlang, Haskell*, JavaScript, Lua, Perl, Python,
     Ruby, Scheme*
-#8: Clojure, Haskell
+#8: Clojure, CoffeeScript, Haskell
 #9: Clojure, Haskell
 #10: Clojure
 #11: Clojure, Haskell

@@ -1,11 +1,37 @@
 # Written on Node 5.x but should work most places
 _ = require "underscore"
+fs = require "fs"
 
+# Helper/utilities
 add = (a, b) -> a + b
+mult = (a, b) -> a * b
 sum = (xs) -> _(xs).reduce add, 0
+product = (xs) -> _(xs).reduce mult, 1
 isEven = (n) -> 0 == n % 2
+atoi = (s) -> parseInt s, "decimal, bitches"
 
-String.prototype.startsWith = (prefix) -> 0 == this.indexOf(prefix)
+String.prototype.startsWith = (prefix) -> 0 == this.indexOf prefix
+
+loadFileSync = (fn) ->
+    size = fs.statSync(fn).size
+    fd = fs.openSync fn, "r"
+    buffer = new Buffer size
+    offset = 0   # Within the buffer
+    remaining = size
+    position = 0  # Within the file
+    while true
+        bytesRead = fs.readSync fd, buffer, offset, remaining, position
+        offset += bytesRead
+        position += bytesRead
+        remaining = remaining - bytesRead
+        break if remaining <= 0
+    fs.closeSync fd
+    buffer.toString "utf-8" 
+
+###########################
+# LET THE SOLUTIONS BEGIN #
+###########################
+
 
 
 # Euler #1
@@ -15,8 +41,7 @@ String.prototype.startsWith = (prefix) -> 0 == this.indexOf(prefix)
 # get 3, 5, 6 and 9. The sum of these multiples is 23.
 #
 # Find the sum of all the multiples of 3 or 5 below 1000.
-exports.euler1 = () ->
-    sum (n for n in [3..999] when n % 3 == 0 or n % 5 == 0)
+exports.euler1 = -> sum (n for n in [3..999] when n % 3 == 0 or n % 5 == 0)
 
 # Euler #2
 # Answer: 4613732
@@ -28,7 +53,7 @@ exports.euler1 = () ->
 #
 # By considering the terms in the Fibonacci sequence whose values do not
 # exceed four million, find the sum of the even-valued terms.
-exports.euler2 = () ->
+exports.euler2 = ->
     acc = 0
     a = 0
     b = 1
@@ -41,7 +66,37 @@ exports.euler2 = () ->
         b = curFib
     acc
 
-# Technically there's an exploit here but we don't care.
+
+# Euler #8
+# Answer: 40824
+#
+# Find the greatest product of five consecutive digits in the 1000-digit
+# number.
+#
+# <number redacted, found in inputs/8/number.txt>
+
+exports.euler8 = ->
+    e8Number = loadFileSync "inputs/8/number.txt"
+    windowWidth = 5
+    maxProduct = 0
+    # TODO: Should this be -1?
+    lastIndex = e8Number.length - windowWidth
+    for index in [0..lastIndex]
+        window = e8Number.substring index, index + windowWidth
+        window = (c for c in window)
+        xs = _(window).map atoi
+        p = product xs
+        maxProduct = p if p > maxProduct
+    maxProduct
+
+####################
+# END OF SOLUTIONS #
+####################
+#
+# Everything below is the "main" machinery.
+#
+
+# Technically there's an exploit here but I don't care.
 run = (number) ->
     label = "euler" + number
     displayEuler label, exports[label]
@@ -51,14 +106,14 @@ displayEuler = (label, euler) ->
     console.log label + ": " + euler()
 
 
-run_all = () ->
+run_all = ->
     for own label, euler of exports
         if label.startsWith "euler"
             displayEuler label, euler
 
 
 if require.main == module
-    do main = () ->
+    do main = ->
         args = process.argv.slice 2  # Get rid of "node/coffee" and filename.
         if args.length <= 0
             do run_all
