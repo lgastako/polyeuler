@@ -92,7 +92,7 @@ exports.euler4 = ->
 
 
 # Euler #31
-# Answer:
+# Answer: 73682
 #
 # In England the currency is made up of pound, £, and pence, p, and there are
 # eight coins in general circulation:
