@@ -81,7 +81,6 @@ isPalindrome = (n) ->
     s = "" + n
     s.reverse() == s
 
-
 # NOTE: Could problably be optimized but this will be more than fast enough.
 exports.euler4 = ->
     result = 0
@@ -90,6 +89,31 @@ exports.euler4 = ->
             product = i * j
             result = product if product > result and isPalindrome product
     result
+
+
+# Euler #31
+# Answer:
+#
+# In England the currency is made up of pound, £, and pence, p, and there are
+# eight coins in general circulation:
+#
+# 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p) and £2 (200p).
+#
+# It is possible to make £2 in the following way:
+#
+# 1x£1 + 1x50p + 2x20p + 1x5p + 1x2p + 3x1p
+#
+# How many different ways can £2 be made using any number of coins?
+
+ways = (target, coins) ->
+    a = (0 for n in [0..target])
+    a[0] = 1
+    for c in coins
+        for n in [c..(target + 1)]
+            a[n] += a[n - c]
+    a[target]
+
+exports.euler31 = -> ways 200, [1, 2, 5, 10, 20, 50, 100, 200]
 
 
 # Euler #8

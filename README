@@ -29,7 +29,7 @@ in parens)):
 
 C (6) +cli
 Clojure (18+) -cli
-CoffeeScript (4) +cli
+CoffeeScript (5) +cli
 Erlang (7) -cli
 F# (1) +cli
 Fortran (3) -cli
@@ -53,7 +53,7 @@ Scheme (7) -cli
 Haskell (21+) +cli
 
 
-That's 24 languages with 133+ (overlapping) solutions.
+That's 24 languages with 134+ (overlapping) solutions.
 
 
 Language list for each solution:
@@ -91,6 +91,7 @@ Language list for each solution:
 #26: Haskell
 #29: Clojure, Haskell
 #30: Haskell
+#31: CoffeeScript
 #34: Clojure, Haskell
 #35: Haskell*
 #36: Haskell
@@ -101,7 +102,7 @@ Language list for each solution:
 
 * Idicates a slow solution.
 
-That's 32 unique problems solved.
+That's 33 unique problems solved.
 
 
 Missing languages that I would like to (and probably will) add:
