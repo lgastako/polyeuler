@@ -10,3 +10,5 @@ go-euler
 *.o
 *.6
 Euler.exe
+rust-euler
+rust-euler.dSYM

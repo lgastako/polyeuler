@@ -37,5 +37,8 @@ euler.6: euler.go
 ooc-euler: ooc-euler.ooc
 	rock ooc-euler.ooc
 
+rust-euler: euler.rs
+	rustc euler.rs -o rust-euler
+
 clean:
-	\rm -f ooc-euler c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o} *.6 go-euler
+	\rm -f ooc-euler c-euler niceeuler.jar ocaml-euler *.o *.cm{i,x,o} *.6 go-euler rust-euler
