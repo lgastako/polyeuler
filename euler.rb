@@ -174,9 +174,25 @@ def euler7
     result
 end
 
+# Problem #9
+# Answer: 31875000
+# 
+# A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+# a^2 + b^2 = c^2
+# For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+# There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+# Find the product abc.
+
+def euler9
+  (2..1000).each do |b|
+    (1...b).each do |a|
+      c = Math.sqrt(a**2 + b**2)
+      return (a*b*c).to_i if a + b + c == 1000
+    end
+  end
+end
 
 MAX_EULER = 7
-
 
 if __FILE__ == $0
     if ARGV.length > 0
